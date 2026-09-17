@@ -1,0 +1,421 @@
+<!-- ============================================================
+     LA JOLLA BEACH & TENNIS CLUB — CLUB PREVIEW
+     Extended section. Place directly BELOW the
+     "Garden View Retreats in La Jolla" section.
+     Self-contained: paste as one Custom HTML block. No footer.
+     ============================================================ -->
+
+<section class="ljb-ext" aria-labelledby="ljb-ext-heading">
+
+<style>
+/* ------------------------------------------------------------------
+   1. PASTE YOUR IMAGE URLS HERE  — this is the only place to edit.
+      Use full URLs from the Media Library, e.g.
+      https://www.ljbtc.com/wp-content/uploads/2026/09/your-image.jpg
+      Any slot left blank simply renders as a warm sand panel.
+   ------------------------------------------------------------------ */
+.ljb-ext{
+  --img-statement: none;   /* wide: courtyard / garden path            */
+  --img-room:      none;   /* vertical or square: guest room interior  */
+  --img-bed:       none;   /* detail: navy upholstered bed, brass trim */
+  --img-bath:      none;   /* detail: expanded bathroom                */
+  --img-kitchen:   none;   /* detail: kitchen, navy island, brass      */
+  --img-lounge:    none;   /* detail: swivel chair / light oak         */
+  --img-mosaic-1:  none;   /* wide: garden view from room              */
+  --img-mosaic-2:  none;   /* wide: architecture / Spanish detail      */
+  --img-mosaic-3:  none;   /* wide: grounds, palms, tennis, sand       */
+  --img-cta:       none;   /* wide, darker: dusk exterior or beach     */
+
+  /* 2. BRAND TOKENS — nudge these if your palette differs. */
+  --navy:      #17324c;
+  --navy-deep: #0f2334;
+  --sand:      #efe7d9;
+  --sand-warm: #e3d5bf;
+  --paper:     #faf6ef;
+  --clay:      #b9704a;
+  --pine:      #6f7f69;
+  --ink:       #23282d;
+  --ink-soft:  #55606a;
+  --rule:      rgba(23,50,76,.16);
+
+  --serif: "Canela","Freight Display Pro","Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:  "Founders Grotesk","Neue Haas Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+
+  /* ---- layout: break out of the theme container, kill all white space ---- */
+  display:block;
+  margin-left:calc(50% - 50vw);
+  margin-right:calc(50% - 50vw);
+  margin-top:0;
+  margin-bottom:0;
+  padding:0;
+  width:auto;
+  overflow-x:clip;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.ljb-ext *,.ljb-ext *::before,.ljb-ext *::after{box-sizing:border-box;}
+.ljb-ext p,.ljb-ext h2,.ljb-ext h3,.ljb-ext h4,.ljb-ext ul,.ljb-ext li,.ljb-ext figure{margin:0;padding:0;}
+.ljb-ext ul{list-style:none;}
+.ljb-ext img{display:block;max-width:100%;height:auto;}
+
+/* every band sits flush against the next — no gaps anywhere */
+.ljb-band{margin:0;padding:0;position:relative;}
+.ljb-inner{max-width:1240px;margin:0 auto;padding:0 16px;}
+@media (min-width:720px){.ljb-inner{padding:0 40px;}}
+
+/* type */
+.ljb-eyebrow{
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:600;color:var(--clay);margin-bottom:18px;
+}
+.ljb-eyebrow--light{color:var(--sand-warm);}
+.ljb-h2{
+  font-family:var(--serif);font-weight:400;line-height:1.1;
+  font-size:clamp(30px,4.6vw,52px);letter-spacing:-.01em;color:var(--navy);
+}
+.ljb-h3{
+  font-family:var(--serif);font-weight:400;line-height:1.2;
+  font-size:clamp(21px,2.2vw,27px);color:var(--navy);
+}
+.ljb-lede{font-size:clamp(17px,1.5vw,20px);line-height:1.7;color:var(--ink-soft);}
+.ljb-body{color:var(--ink-soft);}
+.ljb-body + .ljb-body{margin-top:18px;}
+
+/* image behaviour — image layer sits over a sand panel, so an empty
+   slot still renders as a warm sand field instead of a broken image */
+.ljb-media{
+  background-color:var(--sand);
+  background-image:var(--src,none),linear-gradient(140deg,rgba(255,255,255,.5),rgba(227,213,191,.78));
+  background-size:cover,cover;
+  background-position:center,center;
+  background-repeat:no-repeat,no-repeat;
+}
+
+/* ============ A. STATEMENT ============ */
+.ljb-statement{background:var(--paper);padding:clamp(56px,7vw,104px) 0 clamp(40px,5vw,64px);}
+.ljb-statement .ljb-inner{max-width:900px;text-align:center;}
+.ljb-statement .ljb-h2{margin-bottom:22px;}
+.ljb-quote{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(20px,2.4vw,28px);line-height:1.45;color:var(--navy);
+  max-width:30ch;margin:0 auto 26px;
+}
+.ljb-rule{width:56px;height:1px;background:var(--clay);margin:0 auto 26px;}
+
+/* ============ B. FULL-BLEED STATEMENT IMAGE ============ */
+.ljb-wide{
+  height:clamp(260px,46vw,620px);
+  --src:var(--img-statement);
+}
+.ljb-wide::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:45%;
+  background:linear-gradient(to top,rgba(15,35,52,.55),transparent);
+}
+.ljb-wide-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:0 16px clamp(20px,3vw,40px);
+}
+@media (min-width:720px){.ljb-wide-cap{padding-left:40px;padding-right:40px;}}
+.ljb-wide-cap span{
+  display:inline-block;max-width:640px;color:#fff;
+  font-family:var(--serif);font-size:clamp(17px,2vw,25px);line-height:1.35;
+  text-shadow:0 1px 18px rgba(15,35,52,.5);
+}
+
+/* ============ C. SPLIT — THE ROOM ============ */
+.ljb-split{display:grid;grid-template-columns:1fr;background:var(--paper);}
+@media (min-width:900px){.ljb-split{grid-template-columns:1.05fr 1fr;align-items:stretch;}}
+.ljb-split-media{min-height:clamp(280px,60vw,660px);--src:var(--img-room);}
+.ljb-split-text{
+  padding:clamp(44px,6vw,84px) 16px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+@media (min-width:720px){.ljb-split-text{padding-left:clamp(32px,5vw,72px);padding-right:clamp(32px,5vw,72px);}}
+.ljb-split-text .ljb-h2{margin-bottom:20px;}
+.ljb-specs{margin-top:32px;border-top:1px solid var(--rule);}
+.ljb-specs li{
+  display:flex;justify-content:space-between;gap:20px;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+  font-size:15px;
+}
+.ljb-specs dt,.ljb-specs .k{
+  letter-spacing:.14em;text-transform:uppercase;font-size:11px;
+  font-weight:600;color:var(--ink-soft);padding-top:3px;white-space:nowrap;
+}
+.ljb-specs .v{color:var(--navy);text-align:right;}
+
+/* ============ D. DESIGN DETAILS ============ */
+.ljb-details{background:var(--sand);padding:clamp(56px,7vw,104px) 0;}
+.ljb-details-head{max-width:720px;margin-bottom:clamp(34px,4vw,54px);}
+.ljb-details-head .ljb-h2{margin-bottom:18px;}
+.ljb-grid{display:grid;gap:1px;background:var(--rule);grid-template-columns:1fr;}
+@media (min-width:640px){.ljb-grid{grid-template-columns:1fr 1fr;}}
+@media (min-width:1040px){.ljb-grid{grid-template-columns:repeat(4,1fr);}}
+.ljb-card{background:var(--paper);display:flex;flex-direction:column;}
+.ljb-card-media{height:clamp(160px,22vw,250px);}
+@media (min-width:640px){.ljb-card-media{height:clamp(190px,22vw,250px);}}
+.ljb-card-body{padding:26px 24px 30px;}
+.ljb-card-body .ljb-h3{margin-bottom:10px;font-size:20px;}
+.ljb-card-body p{font-size:15px;color:var(--ink-soft);line-height:1.6;}
+.ljb-card-num{
+  font-family:var(--serif);font-size:13px;color:var(--clay);
+  letter-spacing:.1em;margin-bottom:12px;display:block;
+}
+
+/* ============ E. EDGE-TO-EDGE MOSAIC (zero gutters) ============ */
+.ljb-mosaic{display:grid;grid-template-columns:1fr;gap:0;background:var(--sand);}
+@media (min-width:760px){.ljb-mosaic{grid-template-columns:repeat(3,1fr);}}
+.ljb-mosaic > div{height:clamp(220px,28vw,420px);}
+
+/* ============ F. THE RENOVATION (navy) ============ */
+.ljb-reno{background:var(--navy);color:#fff;padding:clamp(60px,7.5vw,112px) 0;}
+.ljb-reno .ljb-h2{color:#fff;}
+.ljb-reno-head{max-width:760px;margin-bottom:clamp(40px,5vw,64px);}
+.ljb-reno-head .ljb-h2{margin-bottom:18px;}
+.ljb-reno-head p{color:rgba(255,255,255,.76);}
+.ljb-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(255,255,255,.16);margin-bottom:clamp(44px,5vw,72px);
+}
+@media (min-width:860px){.ljb-stats{grid-template-columns:repeat(4,1fr);}}
+.ljb-stat{background:var(--navy);padding:30px 22px 32px;}
+.ljb-stat b{
+  display:block;font-family:var(--serif);font-weight:400;
+  font-size:clamp(34px,4.4vw,52px);line-height:1;color:var(--sand-warm);margin-bottom:10px;
+}
+.ljb-stat span{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.66);line-height:1.5;display:block;
+}
+.ljb-phases{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.16);}
+@media (min-width:860px){.ljb-phases{grid-template-columns:1fr 1fr;}}
+.ljb-phase{background:var(--navy);padding:34px 26px 38px;}
+.ljb-phase .ljb-eyebrow{margin-bottom:14px;}
+.ljb-phase h4{
+  font-family:var(--serif);font-weight:400;font-size:23px;
+  color:#fff;margin-bottom:8px;line-height:1.25;
+}
+.ljb-phase .ljb-when{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sand-warm);margin-bottom:16px;
+}
+.ljb-phase p{color:rgba(255,255,255,.76);font-size:15.5px;}
+.ljb-phase--done{background:var(--navy-deep);}
+.ljb-credits{
+  margin-top:clamp(40px,5vw,64px);padding-top:30px;
+  border-top:1px solid rgba(255,255,255,.18);
+  display:grid;grid-template-columns:1fr;gap:26px;
+}
+@media (min-width:760px){.ljb-credits{grid-template-columns:1fr 1fr;}}
+.ljb-credit span{
+  display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:8px;
+}
+.ljb-credit strong{
+  font-family:var(--serif);font-weight:400;font-size:21px;color:#fff;display:block;
+}
+.ljb-credit em{font-style:normal;font-size:14px;color:rgba(255,255,255,.7);}
+
+/* ============ G. STAY OPEN NOTE ============ */
+.ljb-note{background:var(--sand-warm);padding:clamp(34px,4vw,54px) 0;}
+.ljb-note .ljb-inner{
+  max-width:1000px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;
+}
+@media (min-width:820px){
+  .ljb-note .ljb-inner{flex-direction:row;align-items:baseline;gap:40px;}
+  .ljb-note .ljb-h3{flex:0 0 auto;}
+  .ljb-note p{flex:1 1 auto;}
+}
+.ljb-note p{color:var(--navy);font-size:clamp(16px,1.6vw,19px);line-height:1.6;}
+.ljb-note .ljb-h3{white-space:nowrap;}
+
+/* ============ H. CTA ============ */
+.ljb-cta{
+  background-color:var(--navy-deep);
+  background-image:
+    linear-gradient(rgba(15,35,52,.62),rgba(15,35,52,.74)),
+    var(--img-cta,none),
+    linear-gradient(150deg,#1b3b58,#0f2334);
+  background-size:cover,cover,cover;
+  background-position:center,center,center;
+  background-repeat:no-repeat,no-repeat,no-repeat;
+  padding:clamp(64px,8vw,124px) 0;text-align:center;color:#fff;
+}
+.ljb-cta .ljb-inner{max-width:760px;}
+.ljb-cta .ljb-h2{color:#fff;margin-bottom:18px;}
+.ljb-cta p{color:rgba(255,255,255,.82);margin-bottom:34px;}
+.ljb-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+.ljb-btn{
+  display:inline-block;padding:15px 34px;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  text-decoration:none;border:1px solid #fff;color:#fff;
+  transition:background-color .25s ease,color .25s ease;
+}
+.ljb-btn:hover,.ljb-btn:focus{background:#fff;color:var(--navy);text-decoration:none;}
+.ljb-btn--solid{background:#fff;color:var(--navy);}
+.ljb-btn--solid:hover,.ljb-btn--solid:focus{background:var(--clay);border-color:var(--clay);color:#fff;}
+.ljb-ext a:focus-visible{outline:2px solid var(--sand-warm);outline-offset:3px;}
+
+@media (prefers-reduced-motion:reduce){
+  .ljb-ext *{transition:none !important;animation:none !important;}
+}
+</style>
+
+  <!-- A. STATEMENT -->
+  <div class="ljb-band ljb-statement">
+    <div class="ljb-inner">
+      <p class="ljb-eyebrow">A Reimagined Stay</p>
+      <h2 class="ljb-h2" id="ljb-ext-heading">Quiet Side of the Club</h2>
+      <div class="ljb-rule" role="presentation"></div>
+      <p class="ljb-quote">&ldquo;Torrey Pines meets Spanish-style warmth, with the easy rhythm of the California coast.&rdquo;</p>
+      <p class="ljb-lede">Set back from the sand and wrapped in courtyard greenery, our garden-view Club Rooms trade ocean spray for shade, birdsong and the hush of a walled garden &mdash; with the beach, the courts and the water still only a short stroll away.</p>
+    </div>
+  </div>
+
+  <!-- B. FULL-BLEED IMAGE -->
+  <div class="ljb-band ljb-media ljb-wide" role="img" aria-label="Garden courtyard pathway at La Jolla Beach &amp; Tennis Club">
+    <div class="ljb-wide-cap"><span>Ninety years on the same stretch of shoreline &mdash; and a garden that has grown up alongside it.</span></div>
+  </div>
+
+  <!-- C. SPLIT — THE ROOM -->
+  <div class="ljb-band ljb-split">
+    <div class="ljb-media ljb-split-media" role="img" aria-label="Interior of a garden-view Club Room"></div>
+    <div class="ljb-split-text">
+      <p class="ljb-eyebrow">The Room</p>
+      <h2 class="ljb-h2">Designed Around the Light</h2>
+      <p class="ljb-body">Every garden-view room is being reworked from the floor plan up: bathrooms and kitchens expanded, sightlines opened toward the courtyard, and windows put to work so daylight carries all the way through the room.</p>
+      <p class="ljb-body">Inside, the palette leans into sand, surf and sky &mdash; deep navy against light oak, brass that warms as it ages, and textures drawn straight from the bluff trails above the cove.</p>
+      <ul class="ljb-specs">
+        <li><span class="k">Size</span><span class="v">250 square feet</span></li>
+        <li><span class="k">View</span><span class="v">Garden &amp; courtyard</span></li>
+        <li><span class="k">Bedding</span><span class="v">King, queen, double or twin</span></li>
+        <li><span class="k">Location</span><span class="v">Steps from the private beach</span></li>
+        <li><span class="k">Access</span><span class="v">Pool, courts &amp; Club Dining</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- D. DESIGN DETAILS -->
+  <div class="ljb-band ljb-details">
+    <div class="ljb-inner">
+      <div class="ljb-details-head">
+        <p class="ljb-eyebrow">The Details</p>
+        <h2 class="ljb-h2">Four Things You&rsquo;ll Notice First</h2>
+        <p class="ljb-lede">The interiors are the work of Oltra Design Studio &mdash; rooted in the landscape just outside the window.</p>
+      </div>
+      <div class="ljb-grid">
+        <article class="ljb-card">
+          <div class="ljb-media ljb-card-media" style="--src:var(--img-bed);" role="img" aria-label="Navy upholstered bed with brass nailhead trim"></div>
+          <div class="ljb-card-body">
+            <span class="ljb-card-num">01</span>
+            <h3 class="ljb-h3">The Bed</h3>
+            <p>A deep navy upholstered headboard finished with brass nailhead trim &mdash; the anchor the rest of the room is built around.</p>
+          </div>
+        </article>
+        <article class="ljb-card">
+          <div class="ljb-media ljb-card-media" style="--src:var(--img-lounge);" role="img" aria-label="Light oak nightstand and swivel lounge chair"></div>
+          <div class="ljb-card-body">
+            <span class="ljb-card-num">02</span>
+            <h3 class="ljb-h3">Light Oak &amp; a Swivel Chair</h3>
+            <p>Oak nightstands and a swivel lounge chair that turns from the garden to the room &mdash; coastal, but unfussy.</p>
+          </div>
+        </article>
+        <article class="ljb-card">
+          <div class="ljb-media ljb-card-media" style="--src:var(--img-bath);" role="img" aria-label="Expanded guest bathroom"></div>
+          <div class="ljb-card-body">
+            <span class="ljb-card-num">03</span>
+            <h3 class="ljb-h3">A Larger Bath</h3>
+            <p>Bathrooms grow in the redesign &mdash; more room to move, better storage, and finishes chosen to weather salt air.</p>
+          </div>
+        </article>
+        <article class="ljb-card">
+          <div class="ljb-media ljb-card-media" style="--src:var(--img-kitchen);" role="img" aria-label="Kitchen with navy island and antique brass hardware"></div>
+          <div class="ljb-card-body">
+            <span class="ljb-card-num">04</span>
+            <h3 class="ljb-h3">The Kitchen</h3>
+            <p>A navy-painted island with antique brass hardware, sized for the long stays this club has always invited.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- E. EDGE-TO-EDGE MOSAIC -->
+  <div class="ljb-band ljb-mosaic">
+    <div class="ljb-media" style="--src:var(--img-mosaic-1);" role="img" aria-label="Garden view from a Club Room window"></div>
+    <div class="ljb-media" style="--src:var(--img-mosaic-2);" role="img" aria-label="Spanish-influenced architectural detail"></div>
+    <div class="ljb-media" style="--src:var(--img-mosaic-3);" role="img" aria-label="Club grounds with palms and tennis courts"></div>
+  </div>
+
+  <!-- F. THE RENOVATION -->
+  <div class="ljb-band ljb-reno">
+    <div class="ljb-inner">
+      <div class="ljb-reno-head">
+        <p class="ljb-eyebrow ljb-eyebrow--light">The Renovation</p>
+        <h2 class="ljb-h2">A Legacy, Carefully Rewritten</h2>
+        <p class="ljb-lede" style="color:rgba(255,255,255,.76);">Twenty-one acres. Ninety years. A $60 million, two-phase renovation that keeps everything guests love about this place and quietly brings the rest up to date.</p>
+      </div>
+
+      <div class="ljb-stats">
+        <div class="ljb-stat"><b>90</b><span>Years on this shoreline</span></div>
+        <div class="ljb-stat"><b>$60M</b><span>Resort-wide investment</span></div>
+        <div class="ljb-stat"><b>90</b><span>Guest rooms reimagined</span></div>
+        <div class="ljb-stat"><b>21</b><span>Acres of coastline</span></div>
+      </div>
+
+      <div class="ljb-phases">
+        <div class="ljb-phase ljb-phase--done">
+          <p class="ljb-eyebrow ljb-eyebrow--light">Phase One &mdash; Complete</p>
+          <h4>The Heart of the Club</h4>
+          <p class="ljb-when">Completed 2025</p>
+          <p>A refreshed pool and deck, a reimagined Club Dining, and an all-new Club Market &mdash; the gathering places, finished first.</p>
+        </div>
+        <div class="ljb-phase">
+          <p class="ljb-eyebrow ljb-eyebrow--light">Phase Two &mdash; Next</p>
+          <h4>The Guest Rooms</h4>
+          <p class="ljb-when">November 2026 &ndash; Memorial Day 2027</p>
+          <p>Ninety rooms rebuilt around light and view: expanded baths and kitchens, smarter layouts, and interiors drawn from the Torrey Pines landscape.</p>
+        </div>
+      </div>
+
+      <div class="ljb-credits">
+        <div class="ljb-credit">
+          <span>Architecture</span>
+          <strong>Carrier Johnson</strong>
+          <em>Expanded baths and kitchens, view-focused spaces, more natural light.</em>
+        </div>
+        <div class="ljb-credit">
+          <span>Interiors</span>
+          <strong>Oltra Design Studio</strong>
+          <em>Led by Nicole Federico &mdash; Torrey Pines, early Spanish influence and sunshine.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- G. STAY OPEN NOTE -->
+  <div class="ljb-band ljb-note">
+    <div class="ljb-inner">
+      <h3 class="ljb-h3">We stay open throughout.</h3>
+      <p>The guest room renovation is being completed in stages, so the beach, the courts, the pool and the dining room stay exactly where you left them. If your dates fall inside a phase, our reservations team will place you well away from the work.</p>
+    </div>
+  </div>
+
+  <!-- H. CTA -->
+  <div class="ljb-band ljb-cta">
+    <div class="ljb-inner">
+      <p class="ljb-eyebrow ljb-eyebrow--light">Plan Your Stay</p>
+      <h2 class="ljb-h2">See What&rsquo;s Coming Next</h2>
+      <p>Follow the renovation as it unfolds, or reserve a garden-view Club Room and watch the club come into its next ninety years.</p>
+      <div class="ljb-actions">
+        <a class="ljb-btn ljb-btn--solid" href="/the-renovation/">Explore the Renovation</a>
+        <a class="ljb-btn" href="/rooms/">View All Rooms &amp; Suites</a>
+      </div>
+    </div>
+  </div>
+
+</section>
