@@ -1,0 +1,1182 @@
+<style>
+:root{--bg:#F2F3F1;--panel:#FFFFFF;--code-bg:#121814;--ink:#131A16;--mute:#5C6862;
+--faint:#8A968F;--line:#D8DEDA;--brass:#8A6B2F;--brass-2:#6E5426;--ok:#1F7A4D;--warn:#8A4B16;
+--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+--ui:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0D1310;--panel:#141F19;
+--code-bg:#0A0F0C;--ink:#EDE7DA;--mute:#A2A99E;--faint:#6E7972;--line:#26372D;
+--brass:#C1A265;--brass-2:#DCC28C;--ok:#6FD3A0;--warn:#E0A85C}}
+:root[data-theme="dark"]{--bg:#0D1310;--panel:#141F19;--code-bg:#0A0F0C;--ink:#EDE7DA;
+--mute:#A2A99E;--faint:#6E7972;--line:#26372D;--brass:#C1A265;--brass-2:#DCC28C;--ok:#6FD3A0;--warn:#E0A85C}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(1.25rem,4vw,2.75rem)}
+h1{font-size:clamp(1.35rem,3vw,1.9rem);margin:0 0 .4rem;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 1.6rem;max-width:64ch}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-bottom:.9rem}
+button.copy{font-family:var(--ui);font-size:.9rem;font-weight:600;color:var(--bg);background:var(--brass);
+border:1px solid var(--brass);border-radius:6px;padding:.8em 1.5em;min-height:46px;cursor:pointer;
+transition:background .2s,color .2s}
+button.copy:hover{background:var(--brass-2);border-color:var(--brass-2)}
+button.copy.done{background:var(--ok);border-color:var(--ok)}
+.meta{font-family:var(--mono);font-size:.76rem;color:var(--faint)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.25rem 1.4rem;margin-bottom:1.3rem}
+.card.flag{border-color:var(--warn)}
+.card h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.12em;color:var(--brass);margin:0 0 .8rem}
+.card.flag h2{color:var(--warn)}
+.card ol,.card ul{margin:0;padding-left:1.2rem;display:grid;gap:.5rem}
+.card li,.card p{color:var(--mute);font-size:.95rem}
+.card p{margin:0 0 .6rem}
+.card p:last-child{margin:0}
+b{color:var(--ink);font-weight:600}
+code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);
+border-radius:4px;padding:.1em .4em;color:var(--ink)}
+pre{margin:0;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:1rem 1.1rem;
+max-height:55vh;overflow:auto;-webkit-overflow-scrolling:touch}
+pre code{font-family:var(--mono);font-size:.76rem;line-height:1.6;color:#D7E0D9;white-space:pre;
+background:none;border:0;padding:0}
+.foot{margin-top:1.2rem;font-size:.85rem;color:var(--faint)}
+</style>
+<div class="wrap">
+  <h1>Justin Close Media — the complete website code</h1>
+  <p class="sub">One finished file. The CSS and JavaScript are already inside it, so there is nothing else to download and nothing to link together.</p>
+  <div class="bar">
+    <button class="copy" data-target="code" type="button">Copy all the code</button>
+    <span class="meta">1085 lines · 38.4 KB · HTML + CSS + JS</span>
+  </div>
+  <div class="card">
+    <h2>What to do with it</h2>
+    <ol>
+      <li>Copy it, then paste into a plain text editor. In TextEdit on a Mac choose <b>Format &rarr; Make Plain Text</b> first, or the file will not work.</li>
+      <li>Save it as <code>index.html</code> — that exact name, not <code>.txt</code>.</li>
+      <li>Keep it in a folder with your <code>images</code> folder beside it.</li>
+      <li>Drag that folder onto <b>app.netlify.com/drop</b> to put it online free.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Your photographs</h2>
+    <p>The Lifestyle chapter now carries a real photograph, loaded from
+    <code>images/lifestyle-beachside.jpg</code>. Keep an <code>images</code> folder
+    beside the HTML file and that path works as written.</p>
+    <p>Every other frame is still a placeholder. To fill one, replace its
+    <code>&lt;span&gt;</code> — the one on a line containing <code>class="ph</code>, not the
+    caption below it — with <code>&lt;img src="images/your-photo.jpg" alt="what it shows"&gt;</code>.</p>
+  </div>
+  <div class="card">
+    <h2>Still to edit</h2>
+    <ol>
+      <li>Your email appears <b>twice</b> — in the contact section and near the bottom in the script.</li>
+      <li>The <b>Coverage</b> line, for your phone number and service area.</li>
+      <li>The <b>FAA line</b> — do not sell drone work until you hold a Part 107 certificate.</li>
+    </ol>
+  </div>
+  <pre><code id="code">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;meta name="color-scheme" content="dark"&gt;
+&lt;title&gt;Justin Close Media — Hospitality &amp;amp; Aerial Photography&lt;/title&gt;
+&lt;meta name="description" content="Justin Close Media photographs hotels, lodges and private rentals — interiors, grounds and aerial work made for the places a booking is decided."&gt;
+&lt;meta property="og:title" content="Justin Close Media — Hospitality &amp;amp; Aerial Photography"&gt;
+&lt;meta property="og:description" content="Interiors, grounds and aerial photography for hotels, lodges and private rentals."&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%F0%9F%93%B7&lt;/text&gt;&lt;/svg&gt;"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;style&gt;
+/* ============================================================
+   JUSTIN CLOSE MEDIA — hospitality &amp; aerial photography
+   Single file. No external requests. Edit freely.
+
+   The page commits to one dark visual world by design: photographers
+   show work on dark grounds. Every colour is painted explicitly so it
+   holds regardless of the viewer's light/dark setting.
+   ============================================================ */
+
+:root {
+  --pitch:      #0D1310;  /* page ground, near-black with a green bias */
+  --forest:     #141F19;  /* raised panels */
+  --forest-2:   #1B2A22;  /* hover / inset */
+  --line:       #26372D;  /* hairlines */
+  --bone:       #EDE7DA;  /* primary text, warm */
+  --bone-mute:  #A2A99E;  /* secondary text, green-biased grey */
+  --bone-faint: #6E7972;  /* tertiary */
+  --brass:      #C1A265;  /* rules, small caps, numerals */
+  --brass-lit:  #DCC28C;  /* hover */
+
+  --display: "Didot", "Bodoni 72", Baskerville, "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --text: Optima, "Gill Sans", "Gill Sans MT", "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+
+  --wrap: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+
+body {
+  margin: 0;
+  background: var(--pitch);
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* fine film grain over the whole page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.18;
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* small caps label — used sparingly */
+.sc {
+  font-family: var(--text);
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+
+.shell { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+
+section { padding-block: clamp(5rem, 11vw, 9rem); }
+
+.rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* quiet link with a brass underline that draws in */
+.qlink {
+  display: inline-block;
+  font-family: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  padding-bottom: 0.55rem;
+  position: relative;
+}
+.qlink::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+  transform: scaleX(0.42);
+  transition: transform 0.5s cubic-bezier(.19,1,.22,1);
+}
+.qlink:hover::after { transform: scaleX(1); }
+.qlink:hover { color: var(--brass-lit); }
+
+:focus-visible { outline: 1px solid var(--brass-lit); outline-offset: 5px; }
+
+/* ---------------- header ---------------- */
+.top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  padding-block: 1.5rem;
+  transition: background 0.5s ease, padding 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+.top.settled {
+  background: rgba(13, 19, 16, 0.9);
+  backdrop-filter: blur(14px);
+  padding-block: 0.95rem;
+  border-bottom-color: var(--line);
+}
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+
+.mark {
+  font-family: var(--display);
+  font-size: 0.94rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  white-space: nowrap;
+}
+.mark span { color: var(--brass); }
+
+.sail { display: flex; align-items: center; gap: 2.4rem; }
+.sail a {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+  transition: color 0.3s ease;
+}
+.sail a:hover { color: var(--brass-lit); }
+
+.sail-btn {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+@media (max-width: 900px) {
+  .sail-btn { display: block; }
+  /* closed menu is display:none, never translated off-canvas —
+     an off-canvas panel widens the page and causes sideways scroll */
+  .sail {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--pitch);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+  }
+  .sail.open { display: flex; animation: fadeIn 0.45s ease both; }
+  .sail a { font-size: 0.82rem; color: var(--bone); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------- hero ---------------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: 0 clamp(3.5rem, 8vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(75% 55% at 18% 88%, rgba(193,162,101,0.13), transparent 62%),
+    radial-gradient(60% 45% at 82% 12%, rgba(31,64,48,0.55), transparent 70%),
+    linear-gradient(172deg, #0A100D 0%, #101A15 46%, #16241C 100%);
+}
+/* optional hero photograph, sits under the vignette */
+.hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* soft vignette + darkening, like a lens. Keeps the headline readable
+   over whatever photograph goes behind it. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(6,10,8,0.92) 0%, rgba(6,10,8,0.45) 45%, rgba(6,10,8,0.25) 100%),
+    radial-gradient(120% 90% at 50% 45%, transparent 42%, rgba(5,8,6,0.72) 100%);
+  pointer-events: none;
+}
+.hero-in { position: relative; z-index: 2; width: 100%; }
+
+.hero h1 {
+  font-size: clamp(2.05rem, 4.4vw, 3.65rem);
+  line-height: 1.16;
+  max-width: 19ch;
+  margin: 1.9rem 0 0;
+}
+.hero h1 em { font-style: italic; color: var(--brass-lit); }
+
+.hero-sub {
+  margin: 1.9rem 0 0;
+  max-width: 52ch;
+  color: var(--bone-mute);
+  font-size: 1.02rem;
+}
+.hero-foot {
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.hero-where {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin: 0;
+}
+
+/* staged entrance */
+.up { opacity: 0; transform: translateY(18px); animation: up 1.15s cubic-bezier(.19,1,.22,1) forwards; }
+.up-1 { animation-delay: 0.1s; }
+.up-2 { animation-delay: 0.26s; }
+.up-3 { animation-delay: 0.42s; }
+.up-4 { animation-delay: 0.58s; }
+@keyframes up { to { opacity: 1; transform: none; } }
+
+/* Scroll-revealed sections. Visible by default — the hidden state is only
+   applied once JS confirms it can reveal them again, so content can never
+   be stranded invisible if the observer misses one. */
+.veil { opacity: 1; }
+.reveal-on .veil {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(.19,1,.22,1);
+}
+.reveal-on .veil.seen { opacity: 1; transform: none; }
+
+/* ---------------- statement ---------------- */
+.statement { text-align: center; }
+.statement .inner { max-width: 46rem; margin: 0 auto; }
+.statement h2 {
+  font-size: clamp(1.5rem, 2.9vw, 2.25rem);
+  line-height: 1.34;
+  margin: 1.75rem 0 0;
+}
+.statement h2 em { font-style: italic; color: var(--brass-lit); }
+.statement p {
+  color: var(--bone-mute);
+  margin: 1.6rem auto 0;
+  max-width: 40rem;
+}
+
+/* ---------------- chapters / gallery ---------------- */
+.chapter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+.chapter-head h3 { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+.chapter-head .n {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  color: var(--brass);
+}
+
+/* staggered editorial grid */
+.plates { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1rem, 2.2vw, 2rem); }
+.plate { grid-column: span 6; }
+.plate.tall { grid-column: span 5; }
+.plate.wide { grid-column: span 7; }
+.plate.full { grid-column: span 12; }
+.plate.drop { margin-top: clamp(2rem, 6vw, 5rem); }
+
+.plate figure { margin: 0; }
+.plate .glass {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest);
+  border: 1px solid var(--line);
+}
+.plate .glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 80% at 50% 40%, transparent 45%, rgba(5,8,6,0.5) 100%);
+  pointer-events: none;
+}
+.plate img { width: 100%; height: 100%; object-fit: cover; }
+
+/* placeholder faces — muted tonal grounds so the gallery has rhythm
+   before the real photographs go in */
+.ph { aspect-ratio: 3 / 2; display: grid; place-items: center; }
+.ph.portrait { aspect-ratio: 4 / 5; }
+.ph.upright { aspect-ratio: 2 / 3; }   /* matches a full-frame portrait crop */
+.ph.pano { aspect-ratio: 21 / 9; }
+.ph span {
+  font-size: 0.63rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(237,231,218,0.42);
+  position: relative;
+  z-index: 1;
+}
+.t-1 { background: linear-gradient(155deg, #1B2A22, #101A15); }
+.t-2 { background: linear-gradient(155deg, #24291F, #131711); }
+.t-3 { background: linear-gradient(155deg, #2A2419, #14110C); }
+.t-4 { background: linear-gradient(155deg, #17242A, #0D1417); }
+.t-5 { background: linear-gradient(155deg, #262019, #15120E); }
+.t-6 { background: linear-gradient(155deg, #1E2620, #0F1512); }
+
+.cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-mute);
+}
+.cap b { font-weight: 400; color: var(--bone); }
+.cap i { font-style: normal; color: var(--brass); font-family: var(--display); letter-spacing: 0.14em; }
+
+.chapter + .chapter { margin-top: clamp(4rem, 9vw, 7.5rem); }
+
+/* a written column sitting in the grid beside a photograph */
+.plate-note { display: flex; flex-direction: column; justify-content: flex-end; }
+.plate-note p { color: var(--bone-mute); margin: 1.2rem 0 0; max-width: 38ch; }
+.plate-note .sc { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+  .plate, .plate.tall, .plate.wide, .plate.full { grid-column: span 12; }
+  .plate.drop { margin-top: 0; }
+}
+
+/* ---------------- aerial band ---------------- */
+.aerial {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.aerial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(55% 70% at 82% 20%, rgba(193,162,101,0.10), transparent 65%);
+  pointer-events: none;
+}
+.aerial-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+@media (max-width: 880px) { .aerial-grid { grid-template-columns: 1fr; } }
+.aerial h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin: 1.6rem 0 0; }
+.aerial h2 em { font-style: italic; color: var(--brass-lit); }
+.aerial p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+.aerial ul { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.95rem; }
+.aerial li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.4rem;
+  color: var(--bone-mute);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+.aerial li::before {
+  content: "—";
+  color: var(--brass);
+}
+.note {
+  margin-top: 2rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+
+/* ---------------- services ---------------- */
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } }
+.svc {
+  padding: clamp(1.75rem, 3.5vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--line);
+  padding-right: clamp(1rem, 4vw, 3.5rem);
+}
+.svc-grid &gt; .svc:nth-child(even) { padding-left: clamp(1rem, 4vw, 3.5rem); padding-right: 0; }
+@media (min-width: 761px) {
+  .svc-grid &gt; .svc:nth-child(odd) { border-right: 1px solid var(--line); }
+  .svc-grid &gt; .svc:nth-child(even) { padding-left: clamp(1.5rem, 4vw, 3.5rem); }
+}
+@media (max-width: 760px) {
+  .svc-grid &gt; .svc:nth-child(even) { padding-left: 0; }
+}
+.svc h3 { font-size: 1.28rem; margin-bottom: 0.7rem; }
+.svc p { margin: 0; color: var(--bone-mute); font-size: 0.97rem; }
+
+/* ---------------- about ---------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.25rem, 6vw, 5rem);
+  align-items: start;
+}
+@media (max-width: 880px) { .about-grid { grid-template-columns: 1fr; } }
+.about h2 { font-size: clamp(1.6rem, 3.2vw, 2.45rem); margin: 1.5rem 0 0; }
+.about p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+
+/* ---------------- process ---------------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.step { border-top: 1px solid var(--line); padding-top: 1.15rem; }
+.step .num {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.24em;
+  color: var(--brass);
+}
+.step h3 { font-size: 1.14rem; margin: 0.85rem 0 0.6rem; }
+.step p { margin: 0; color: var(--bone-mute); font-size: 0.94rem; }
+
+/* ---------------- enquiry ---------------- */
+.enq {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+}
+.enq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+@media (max-width: 880px) { .enq-grid { grid-template-columns: 1fr; } }
+.enq h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); margin: 1.5rem 0 0; }
+.enq h2 em { font-style: italic; color: var(--brass-lit); }
+.enq .lede { color: var(--bone-mute); margin: 1.4rem 0 0; max-width: 34rem; }
+
+.reach { margin-top: 2.25rem; padding-top: 1.35rem; border-top: 1px solid var(--line); }
+.reach dt {
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin-bottom: 0.4rem;
+}
+.reach dd { margin: 0 0 1.4rem; font-size: 1.02rem; }
+.reach dd:last-child { margin-bottom: 0; }
+.reach a { color: var(--brass-lit); text-decoration: none; border-bottom: 1px solid rgba(193,162,101,0.4); }
+.reach a:hover { border-bottom-color: var(--brass-lit); }
+
+.form { display: grid; gap: 1.35rem; }
+.f { display: grid; gap: 0.5rem; }
+.f label {
+  font-size: 0.63rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+.f input, .f textarea {
+  font-family: var(--text);
+  font-size: 1rem;
+  color: var(--bone);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0;
+  border-radius: 0;
+  resize: vertical;
+  transition: border-color 0.4s ease;
+}
+.f input:focus, .f textarea:focus { outline: none; border-bottom-color: var(--brass); }
+.f input::placeholder, .f textarea::placeholder { color: var(--bone-faint); }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem; }
+@media (max-width: 540px) { .duo { grid-template-columns: 1fr; } }
+
+.send {
+  justify-self: start;
+  margin-top: 0.5rem;
+  font-family: var(--text);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--pitch);
+  background: var(--brass);
+  border: 1px solid var(--brass);
+  padding: 1.05em 2.6em;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+.send:hover { background: transparent; color: var(--brass-lit); }
+.said { margin: 0; font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); }
+
+/* ---------------- footer ---------------- */
+footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2.25rem; }
+.foot-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.foot-nav { display: flex; flex-wrap: wrap; gap: 2rem; }
+.foot-nav a {
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+}
+.foot-nav a:hover { color: var(--brass-lit); }
+.foot-base {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+/* ----------------------------------------------------------
+   Small screens: lift the smallest labels to a readable size
+   and give every control a 44px-plus tap target.
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .sail a { padding: 0.75rem 1.5rem; }
+}
+@media (max-width: 600px) {
+  .sc          { font-size: 0.74rem; letter-spacing: 0.22em; }
+  .cap         { font-size: 0.72rem; letter-spacing: 0.15em; }
+  .ph span     { font-size: 0.7rem;  letter-spacing: 0.18em; }
+  .f label     { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .reach dt    { font-size: 0.72rem; letter-spacing: 0.2em; }
+  .note,
+  .said        { font-size: 0.72rem; letter-spacing: 0.16em; }
+  .hero-where  { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .foot-base   { font-size: 0.7rem;  letter-spacing: 0.16em; }
+  .foot-nav a  { font-size: 0.74rem; padding-block: 0.35rem; }
+  .qlink       { font-size: 0.78rem; padding-block: 0.5rem 0.7rem; }
+
+  /* full-width, comfortably tappable submit */
+  .send {
+    width: 100%;
+    text-align: center;
+    padding: 1.35em 2rem;
+    font-size: 0.76rem;
+  }
+  /* roomier fields for thumbs */
+  .f input, .f textarea { padding: 0.75rem 0; }
+}
+
+&lt;/style&gt;
+
+&lt;!-- ============================== HEADER ============================== --&gt;
+&lt;header class="top" id="top"&gt;
+  &lt;div class="shell top-in"&gt;
+    &lt;a class="mark" href="#home"&gt;Justin Close &lt;span&gt;Media&lt;/span&gt;&lt;/a&gt;
+    &lt;nav class="sail" id="sail"&gt;
+      &lt;a href="#work"&gt;Work&lt;/a&gt;
+      &lt;a href="#aerial"&gt;Aerial&lt;/a&gt;
+      &lt;a href="#services"&gt;Services&lt;/a&gt;
+      &lt;a href="#about"&gt;About&lt;/a&gt;
+      &lt;a href="#enquire"&gt;Enquire&lt;/a&gt;
+    &lt;/nav&gt;
+    &lt;button class="sail-btn" id="sailBtn" aria-expanded="false" aria-controls="sail"&gt;Menu&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;!-- ============================== HERO ============================== --&gt;
+&lt;section class="hero" id="home"&gt;
+  &lt;!--
+    HERO PHOTOGRAPH — your strongest wide frame goes here.
+    Delete this comment wrapper and the line below becomes live:
+
+    &lt;img class="hero-img" src="images/hero.jpg" alt=""&gt;
+
+    A twilight exterior or an aerial usually works best. Until then the
+    deep green ground below stands in on its own.
+  --&gt;
+  &lt;div class="shell hero-in"&gt;
+    &lt;p class="sc up up-1"&gt;Hospitality &amp;amp; Aerial Photography&lt;/p&gt;
+    &lt;h1 class="up up-2"&gt;Photographed the way a guest wants to &lt;em&gt;remember&lt;/em&gt; the stay&lt;/h1&gt;
+    &lt;p class="hero-sub up up-3"&gt;Interiors, grounds, and aerial work for hotels, lodges, and private rentals — made for the places a booking is decided: your own site, the listing pages, and the moment someone is choosing between you and the property down the road.&lt;/p&gt;
+    &lt;div class="hero-foot up up-4"&gt;
+      &lt;a class="qlink" href="#work"&gt;View the work&lt;/a&gt;
+      &lt;p class="hero-where"&gt;Ground &amp;amp; Air · Available for travel&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== STATEMENT ============================== --&gt;
+&lt;section class="statement veil"&gt;
+  &lt;div class="shell inner"&gt;
+    &lt;p class="sc"&gt;The difference&lt;/p&gt;
+    &lt;h2&gt;A room is booked on a photograph long before anybody reads a &lt;em&gt;word&lt;/em&gt; of the description.&lt;/h2&gt;
+    &lt;p&gt;Most properties are not losing to a better hotel. They are losing to a better-lit one — a beautiful room shot at noon with the curtains shut, a pool photographed in flat grey light instead of at dusk when it glows, grounds that never get shown at all because nobody could get high enough to see them.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;hr class="rule"&gt;
+
+&lt;!-- ============================== WORK ============================== --&gt;
+&lt;section id="work"&gt;
+  &lt;div class="shell"&gt;
+
+    &lt;!--
+      ===================== ADDING YOUR PHOTOGRAPHS =====================
+      Every plate below is a placeholder. To place a real photograph,
+      replace this:
+
+          &lt;span&gt;Twilight facade&lt;/span&gt;
+
+      with this:
+
+          &lt;img src="images/twilight.jpg" alt="Twilight facade of the property"&gt;
+
+      Leave everything else as it is. Put the image files in a folder
+      called "images" beside this file. The captions double as a shot
+      list — these are the frames that sell a property.
+      ===================================================================
+    --&gt;
+
+    &lt;!-- Chapter I --&gt;
+    &lt;div class="chapter veil"&gt;
+      &lt;div class="chapter-head"&gt;
+        &lt;h3&gt;Rooms &amp;amp; Suites&lt;/h3&gt;
+        &lt;span class="n"&gt;I&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plates"&gt;
+        &lt;div class="plate wide"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-1"&gt;&lt;span&gt;Signature king&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Signature king&lt;/b&gt;&lt;i&gt;i&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate tall drop"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph portrait t-3"&gt;&lt;span&gt;Corner suite&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Corner suite, morning&lt;/b&gt;&lt;i&gt;ii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate tall"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph portrait t-5"&gt;&lt;span&gt;Bath &amp;amp; vanity&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Bath &amp;amp; vanity&lt;/b&gt;&lt;i&gt;iii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate wide drop"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-2"&gt;&lt;span&gt;Turndown detail&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Linen &amp;amp; texture&lt;/b&gt;&lt;i&gt;iv&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Chapter II --&gt;
+    &lt;div class="chapter veil"&gt;
+      &lt;div class="chapter-head"&gt;
+        &lt;h3&gt;Arrival &amp;amp; Public Rooms&lt;/h3&gt;
+        &lt;span class="n"&gt;II&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plates"&gt;
+        &lt;div class="plate full"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph pano t-4"&gt;&lt;span&gt;Twilight facade&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;The facade at blue hour&lt;/b&gt;&lt;i&gt;v&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-6"&gt;&lt;span&gt;Lobby &amp;amp; front desk&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;First impression&lt;/b&gt;&lt;i&gt;vi&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate drop"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-3"&gt;&lt;span&gt;Bar, evening&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;The lounge, lit&lt;/b&gt;&lt;i&gt;vii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Chapter III --&gt;
+    &lt;div class="chapter veil"&gt;
+      &lt;div class="chapter-head"&gt;
+        &lt;h3&gt;From the Air&lt;/h3&gt;
+        &lt;span class="n"&gt;III&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plates"&gt;
+        &lt;div class="plate wide"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-4"&gt;&lt;span&gt;Property &amp;amp; grounds&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;The property in full&lt;/b&gt;&lt;i&gt;viii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate tall drop"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph portrait t-1"&gt;&lt;span&gt;Pool from above&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Pool, overhead&lt;/b&gt;&lt;i&gt;ix&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate full"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph pano t-6"&gt;&lt;span&gt;Setting &amp;amp; approach&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Where the property sits&lt;/b&gt;&lt;i&gt;x&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Chapter IV --&gt;
+    &lt;div class="chapter veil"&gt;
+      &lt;div class="chapter-head"&gt;
+        &lt;h3&gt;Table &amp;amp; Detail&lt;/h3&gt;
+        &lt;span class="n"&gt;IV&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plates"&gt;
+        &lt;div class="plate"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-5"&gt;&lt;span&gt;Breakfast service&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;The dining room&lt;/b&gt;&lt;i&gt;xi&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate drop"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph t-2"&gt;&lt;span&gt;Coffee &amp;amp; key&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Guest detail&lt;/b&gt;&lt;i&gt;xii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Chapter V --&gt;
+    &lt;div class="chapter veil"&gt;
+      &lt;div class="chapter-head"&gt;
+        &lt;h3&gt;Lifestyle&lt;/h3&gt;
+        &lt;span class="n"&gt;V&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="plates"&gt;
+        &lt;div class="plate tall"&gt;
+          &lt;figure&gt;
+            &lt;div class="glass"&gt;&lt;div class="ph upright"&gt;&lt;img src="images/lifestyle-beachside.jpg" alt="A guest laughing over a cocktail at a beachside table, the sea behind her"&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;figcaption class="cap"&gt;&lt;b&gt;Beachside, late afternoon&lt;/b&gt;&lt;i&gt;xiii&lt;/i&gt;&lt;/figcaption&gt;
+          &lt;/figure&gt;
+        &lt;/div&gt;
+        &lt;div class="plate wide plate-note"&gt;
+          &lt;p class="sc"&gt;Why it matters&lt;/p&gt;
+          &lt;p&gt;A room photograph tells a guest what they are buying. A lifestyle frame tells them how it will feel — someone laughing over a drink as the light goes long, the part of a stay that gets remembered and retold.&lt;/p&gt;
+          &lt;p&gt;These are the frames that work hardest away from your website: on social, in email, in the places a property is discovered rather than booked. They carry a mood instead of a floor plan.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;!--
+          MORE LIFESTYLE FRAMES GO HERE.
+          Copy the photo block above, swap the src and the alt text, and
+          give it the next roman numeral. Use class "plate tall" for an
+          upright photograph or "plate wide" for a landscape one.
+        --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== AERIAL ============================== --&gt;
+&lt;section class="aerial" id="aerial"&gt;
+  &lt;div class="shell aerial-grid"&gt;
+    &lt;div class="veil"&gt;
+      &lt;p class="sc"&gt;Aerial &amp;amp; Drone&lt;/p&gt;
+      &lt;h2&gt;Some things about a property can only be understood from &lt;em&gt;above&lt;/em&gt;&lt;/h2&gt;
+      &lt;p&gt;A guest scrolling a listing is asking questions your ground-level photographs cannot answer. How big is this place. What is around it. How far is the water, the lift, the vineyard, the old town. Is that pool the centre of the resort or an afterthought behind the car park.&lt;/p&gt;
+      &lt;p&gt;One aerial frame answers all of it at once, which is why it so often becomes the image a property leads with.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="veil"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;span&gt;The whole property in a single frame — scale, layout, and how the buildings sit in the landscape&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;Proximity shots that prove the thing guests actually search for: beachfront, slopeside, lakeside, walking distance to town&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;Grounds, gardens, golf, and pool complexes, which read as maps from overhead and as nothing much from the ground&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;Rooftops, terraces, and the views your best rooms are actually selling&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span&gt;Establishing frames for your homepage banner, brochure cover, and video opener&lt;/span&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;!--
+        IMPORTANT — READ BEFORE PUBLISHING:
+        Flying a drone commercially in the US requires an FAA Part 107
+        Remote Pilot Certificate. Do not sell aerial work until you hold
+        one. Once you do, put your certificate number on the line below
+        so hotels can see it — it is the first thing a cautious GM asks.
+      --&gt;
+      &lt;p class="note"&gt;Flown to FAA regulations · Certificate details on request&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== SERVICES ============================== --&gt;
+&lt;section id="services"&gt;
+  &lt;div class="shell veil"&gt;
+    &lt;p class="sc"&gt;What I photograph&lt;/p&gt;
+    &lt;h2 style="font-size:clamp(1.7rem,3.4vw,2.6rem);margin:1.5rem 0 clamp(2rem,4vw,3rem);max-width:22ch;"&gt;Booked by the half day, the day, or the property&lt;/h2&gt;
+
+    &lt;div class="svc-grid"&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Guest Rooms &amp;amp; Suites&lt;/h3&gt;
+        &lt;p&gt;A hero frame for every room type you sell, with the supporting angles behind it. Curtains open, lamps on, so the room reads warm rather than clinical.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Facades &amp;amp; Twilight&lt;/h3&gt;
+        &lt;p&gt;The exterior at blue hour, when the interior lights balance the last of the sky. Usually the single most valuable frame a property owns.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Aerial &amp;amp; Drone&lt;/h3&gt;
+        &lt;p&gt;Scale, setting, and proximity from overhead — plus the elevated angles that sit between a rooftop and a helicopter.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Arrival &amp;amp; Public Rooms&lt;/h3&gt;
+        &lt;p&gt;Front desk, lounge, corridors, and the sequence of arriving. The spaces that set an expectation between the car park and the room.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Table &amp;amp; Bar&lt;/h3&gt;
+        &lt;p&gt;Breakfast service, the bar in the evening, plated dishes and the room in use — shot on your service schedule, so nothing is staged twice.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="svc"&gt;
+        &lt;h3&gt;Grounds &amp;amp; Amenities&lt;/h3&gt;
+        &lt;p&gt;Pool, spa, terrace, fitness, event space and gardens, including the dusk frames that turn an ordinary amenity into a reason to book.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;hr class="rule"&gt;
+
+&lt;!-- ============================== ABOUT ============================== --&gt;
+&lt;section class="about" id="about"&gt;
+  &lt;div class="shell about-grid"&gt;
+    &lt;div class="veil"&gt;
+      &lt;div class="glass"&gt;&lt;div class="ph portrait t-3"&gt;&lt;span&gt;Portrait&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;p class="cap" style="margin-top:0.85rem;"&gt;&lt;b&gt;Justin Close&lt;/b&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="veil"&gt;
+      &lt;p class="sc"&gt;About&lt;/p&gt;
+      &lt;h2&gt;I am building this studio one property at a time&lt;/h2&gt;
+      &lt;p&gt;Justin Close Media is new, and I would rather say so than pad this page with claims you cannot check. What being new actually buys you: you work with the person holding the camera, I have the time to plan a shoot properly around how your property runs, and I will care about your gallery more than a busy studio can — because for now, your photographs are my portfolio.&lt;/p&gt;
+      &lt;p&gt;I photograph hospitality because the constraints are the interesting part. A room has to look honest and inviting at the same time. You cannot move a wall, the light arrives when it arrives, and housekeeping needs the floor back by two. Working well inside all that is the job.&lt;/p&gt;
+      &lt;p&gt;If you are a property that wants attention paid to it, I am the right call. If you need forty locations covered next week, I am not — not yet.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== PROCESS ============================== --&gt;
+&lt;section id="process"&gt;
+  &lt;div class="shell veil"&gt;
+    &lt;p class="sc"&gt;How a booking runs&lt;/p&gt;
+    &lt;h2 style="font-size:clamp(1.7rem,3.4vw,2.6rem);margin:1.5rem 0 0;max-width:20ch;"&gt;Four steps, and no surprises for your front desk&lt;/h2&gt;
+    &lt;div class="steps"&gt;
+      &lt;div class="step"&gt;
+        &lt;span class="num"&gt;I&lt;/span&gt;
+        &lt;h3&gt;Walkthrough&lt;/h3&gt;
+        &lt;p&gt;We walk the property together, agree which room types are worth covering, and find where the good light lands and at what hour.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="step"&gt;
+        &lt;span class="num"&gt;II&lt;/span&gt;
+        &lt;h3&gt;Shot list&lt;/h3&gt;
+        &lt;p&gt;You have the list before I arrive — every frame, and when each space needs to be free. Housekeeping gets a copy too.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="step"&gt;
+        &lt;span class="num"&gt;III&lt;/span&gt;
+        &lt;h3&gt;Shoot day&lt;/h3&gt;
+        &lt;p&gt;Ground work around occupancy and service, aerials in the right wind and light, facade last as the sky turns. Rooms left as found.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="step"&gt;
+        &lt;span class="num"&gt;IV&lt;/span&gt;
+        &lt;h3&gt;Delivery&lt;/h3&gt;
+        &lt;p&gt;Edited frames in a private gallery, sized for your site, the listing pages, and print — ready to publish as they are.&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== ENQUIRE ============================== --&gt;
+&lt;section class="enq" id="enquire"&gt;
+  &lt;div class="shell enq-grid"&gt;
+    &lt;div class="veil"&gt;
+      &lt;p class="sc"&gt;Enquiries&lt;/p&gt;
+      &lt;h2&gt;Tell me about your &lt;em&gt;property&lt;/em&gt;&lt;/h2&gt;
+      &lt;p class="lede"&gt;Send the property, roughly how many room types you would want covered, whether you want aerial work, and the timing you have in mind. I will come back with availability and a price.&lt;/p&gt;
+      &lt;dl class="reach"&gt;
+        &lt;dt&gt;Email&lt;/dt&gt;
+        &lt;dd&gt;&lt;a href="mailto:justinbclose@gmail.com"&gt;justinbclose@gmail.com&lt;/a&gt;&lt;/dd&gt;
+        &lt;!-- Add your telephone number and the areas you cover here. --&gt;
+        &lt;dt&gt;Coverage&lt;/dt&gt;
+        &lt;dd&gt;Local bookings, and travelling for the right property&lt;/dd&gt;
+      &lt;/dl&gt;
+    &lt;/div&gt;
+
+    &lt;form class="form veil" id="form"&gt;
+      &lt;div class="f"&gt;
+        &lt;label for="q-name"&gt;Your name&lt;/label&gt;
+        &lt;input id="q-name" type="text" required&gt;
+      &lt;/div&gt;
+      &lt;div class="f"&gt;
+        &lt;label for="q-prop"&gt;Property&lt;/label&gt;
+        &lt;input id="q-prop" type="text" required&gt;
+      &lt;/div&gt;
+      &lt;div class="duo"&gt;
+        &lt;div class="f"&gt;
+          &lt;label for="q-mail"&gt;Email&lt;/label&gt;
+          &lt;input id="q-mail" type="email" required&gt;
+        &lt;/div&gt;
+        &lt;div class="f"&gt;
+          &lt;label for="q-tel"&gt;Telephone&lt;/label&gt;
+          &lt;input id="q-tel" type="tel"&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="f"&gt;
+        &lt;label for="q-msg"&gt;What you would like photographed&lt;/label&gt;
+        &lt;textarea id="q-msg" rows="4" required&gt;&lt;/textarea&gt;
+      &lt;/div&gt;
+      &lt;button class="send" type="submit"&gt;Send enquiry&lt;/button&gt;
+      &lt;p class="said" id="said"&gt;Opens your email with the details already written&lt;/p&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- ============================== FOOTER ============================== --&gt;
+&lt;footer&gt;
+  &lt;div class="shell"&gt;
+    &lt;div class="foot-in"&gt;
+      &lt;a class="mark" href="#home"&gt;Justin Close &lt;span&gt;Media&lt;/span&gt;&lt;/a&gt;
+      &lt;nav class="foot-nav"&gt;
+        &lt;a href="#work"&gt;Work&lt;/a&gt;
+        &lt;a href="#aerial"&gt;Aerial&lt;/a&gt;
+        &lt;a href="#services"&gt;Services&lt;/a&gt;
+        &lt;a href="#about"&gt;About&lt;/a&gt;
+        &lt;a href="#enquire"&gt;Enquire&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+    &lt;p class="foot-base" id="base"&gt;Hospitality &amp;amp; aerial photography&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+
+&lt;script&gt;
+(function () {
+  var d = document;
+
+  // year
+  var base = d.getElementById('base');
+  if (base) base.textContent = '© ' + new Date().getFullYear() + ' Justin Close Media · Hospitality &amp; aerial photography';
+
+  // header settles once you leave the hero
+  var top = d.getElementById('top');
+  var onScroll = function () {
+    if (window.scrollY &gt; 60) top.classList.add('settled');
+    else top.classList.remove('settled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // menu
+  var btn = d.getElementById('sailBtn');
+  var sail = d.getElementById('sail');
+  if (btn &amp;&amp; sail) {
+    btn.addEventListener('click', function () {
+      var open = sail.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+    sail.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        sail.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = 'Menu';
+      }
+    });
+  }
+
+  // sections rise into view
+  var veils = [].slice.call(d.querySelectorAll('.veil'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce &amp;&amp; 'IntersectionObserver' in window) {
+    d.documentElement.classList.add('reveal-on');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('seen'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    veils.forEach(function (v) { io.observe(v); });
+    // Safety net: anything still unrevealed after a moment is shown anyway,
+    // so a fast scroll or a missed callback can never hide content.
+    setTimeout(function () {
+      veils.forEach(function (v) { v.classList.add('seen'); });
+    }, 4000);
+  }
+
+  // enquiry -&gt; opens the visitor's mail app, already written.
+  // No server required. To collect submissions online instead, point the
+  // form at a service such as Formspree and delete this handler.
+  var form = d.getElementById('form');
+  var said = d.getElementById('said');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = function (id) { return (d.getElementById(id).value || '').trim(); };
+      var body =
+        'Property: ' + v('q-prop') + '\n' +
+        'Contact: ' + v('q-name') + '\n' +
+        'Email: ' + v('q-mail') + '\n' +
+        (v('q-tel') ? 'Telephone: ' + v('q-tel') + '\n' : '') +
+        '\n' + v('q-msg') + '\n';
+      window.location.href = 'mailto:justinbclose@gmail.com'
+        + '?subject=' + encodeURIComponent('Photography enquiry — ' + (v('q-prop') || 'property'))
+        + '&amp;body=' + encodeURIComponent(body);
+      if (said) said.textContent = 'Opening your email — press send to finish';
+    });
+  }
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+  <p class="foot">Checked for sideways scrolling from 320px to 1440px, with tap targets sized for phones.</p>
+</div>
+<script>
+(function(){
+  var labels={};
+  document.querySelectorAll('button.copy').forEach(function(b){labels[b.dataset.target]=b.textContent;});
+  function flash(btn,msg){var id=btn.dataset.target;btn.textContent=msg;btn.classList.add('done');
+    setTimeout(function(){btn.textContent=labels[id];btn.classList.remove('done');},2200);}
+  function legacy(btn,text){var ta=document.createElement('textarea');ta.value=text;
+    ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.top='-1000px';
+    document.body.appendChild(ta);ta.select();var ok=false;
+    try{ok=document.execCommand('copy');}catch(e){ok=false;}
+    document.body.removeChild(ta);flash(btn,ok?'Copied':'Press Ctrl/Cmd+C');}
+  document.querySelectorAll('button.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var text=document.getElementById(btn.dataset.target).textContent;
+      if(navigator.clipboard&&window.isSecureContext){
+        navigator.clipboard.writeText(text).then(function(){flash(btn,'Copied');})
+          .catch(function(){legacy(btn,text);});
+      } else {legacy(btn,text);}
+    });
+  });
+})();
+</script>

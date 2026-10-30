@@ -1,0 +1,636 @@
+/* Justin Close Media — paste this whole file into
+   Appearance > Customize > Additional CSS in WordPress.
+   Every rule is confined to .jcm and cannot affect your theme. */
+
+/* Justin Close Media — scoped for WordPress.
+   Every rule below applies only inside <div class="jcm">, so it cannot
+   leak out and restyle your theme. */
+.jcm { position: relative; isolation: isolate; }
+
+/* Themes style bare elements (section, ul, figure, button...) and those
+   rules would otherwise bleed into this block. This neutralises them, and
+   must stay ABOVE the design rules, which override it. */
+.jcm section, .jcm div, .jcm figure, .jcm figcaption,
+.jcm ul, .jcm li, .jcm p, .jcm span, .jcm b, .jcm i,
+.jcm h1, .jcm h2, .jcm h3, .jcm a, .jcm img, .jcm hr,
+.jcm form, .jcm button, .jcm input, .jcm textarea, .jcm label,
+.jcm dl, .jcm dt, .jcm dd, .jcm header, .jcm footer,
+.jcm nav, .jcm blockquote {
+  margin: 0; padding: 0; border: 0; outline: 0; background: none;
+  font: inherit; color: inherit; text-align: left; text-decoration: none;
+  text-transform: none; letter-spacing: normal; list-style: none;
+  border-radius: 0; box-shadow: none; max-width: none; min-height: 0;
+  float: none; clear: none; transform: none;
+}
+
+
+/* ============================================================
+   JUSTIN CLOSE MEDIA — hospitality & aerial photography
+   Single file. No external requests. Edit freely.
+
+   The page commits to one dark visual world by design: photographers
+   show work on dark grounds. Every colour is painted explicitly so it
+   holds regardless of the viewer's light/dark setting.
+   ============================================================ */
+
+.jcm {
+  --pitch:      #0D1310;  /* page ground, near-black with a green bias */
+  --forest:     #141F19;  /* raised panels */
+  --forest-2:   #1B2A22;  /* hover / inset */
+  --line:       #26372D;  /* hairlines */
+  --bone:       #EDE7DA;  /* primary text, warm */
+  --bone-mute:  #A2A99E;  /* secondary text, green-biased grey */
+  --bone-faint: #6E7972;  /* tertiary */
+  --brass:      #C1A265;  /* rules, small caps, numerals */
+  --brass-lit:  #DCC28C;  /* hover */
+
+  --display: "Didot", "Bodoni 72", Baskerville, "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --text: Optima, "Gill Sans", "Gill Sans MT", "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+
+  --wrap: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.jcm, .jcm * { box-sizing: border-box; }
+.jcm { scroll-behavior: smooth; overflow-x: clip; }
+
+.jcm {
+  margin: 0;
+  background: var(--pitch);
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* fine film grain over the whole page */
+.jcm::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .jcm { scroll-behavior: auto; }
+  .jcm, .jcm *, .jcm *::before, .jcm *::after { animation: none !important; transition: none !important; }
+
+}
+
+.jcm a { color: inherit; }
+.jcm img { max-width: 100%; display: block; }
+
+.jcm h1, .jcm h2, .jcm h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.18;
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* small caps label — used sparingly */
+.jcm .sc {
+  font-family: var(--text);
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+
+.jcm .shell { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+
+.jcm section { padding-block: clamp(5rem, 11vw, 9rem); }
+
+.jcm .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* quiet link with a brass underline that draws in */
+.jcm .qlink {
+  display: inline-block;
+  font-family: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  padding-bottom: 0.55rem;
+  position: relative;
+}
+.jcm .qlink::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+  transform: scaleX(0.42);
+  transition: transform 0.5s cubic-bezier(.19,1,.22,1);
+}
+.jcm .qlink:hover::after { transform: scaleX(1); }
+.jcm .qlink:hover { color: var(--brass-lit); }
+
+.jcm :focus-visible { outline: 1px solid var(--brass-lit); outline-offset: 5px; }
+
+/* ---------------- header ---------------- */
+.jcm .top {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding-block: 1.5rem;
+  transition: background 0.5s ease, padding 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+.jcm .top.settled {
+  background: rgba(13, 19, 16, 0.9);
+  backdrop-filter: blur(14px);
+  padding-block: 0.95rem;
+  border-bottom-color: var(--line);
+}
+.jcm .top-in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+
+.jcm .mark {
+  font-family: var(--display);
+  font-size: 0.94rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  white-space: nowrap;
+}
+.jcm .mark span { color: var(--brass); }
+
+.jcm .sail { display: flex; align-items: center; gap: 2.4rem; }
+.jcm .sail a {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+  transition: color 0.3s ease;
+}
+.jcm .sail a:hover { color: var(--brass-lit); }
+
+
+@media (max-width: 900px) {
+
+  @keyframes jcm-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------- hero ---------------- */
+.jcm .hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: 0 clamp(3.5rem, 8vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(75% 55% at 18% 88%, rgba(193,162,101,0.13), transparent 62%),
+    radial-gradient(60% 45% at 82% 12%, rgba(31,64,48,0.55), transparent 70%),
+    linear-gradient(172deg, #0A100D 0%, #101A15 46%, #16241C 100%);
+}
+/* optional hero photograph, sits under the vignette */
+.jcm .hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* soft vignette + darkening, like a lens. Keeps the headline readable
+   over whatever photograph goes behind it. */
+.jcm .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(6,10,8,0.92) 0%, rgba(6,10,8,0.45) 45%, rgba(6,10,8,0.25) 100%),
+    radial-gradient(120% 90% at 50% 45%, transparent 42%, rgba(5,8,6,0.72) 100%);
+  pointer-events: none;
+}
+.jcm .hero-in { position: relative; z-index: 2; width: 100%; }
+
+.jcm .hero h1 {
+  font-size: clamp(2.05rem, 4.4vw, 3.65rem);
+  line-height: 1.16;
+  max-width: 19ch;
+  margin: 1.9rem 0 0;
+}
+.jcm .hero h1 em { font-style: italic; color: var(--brass-lit); }
+
+.jcm .hero-sub {
+  margin: 1.9rem 0 0;
+  max-width: 52ch;
+  color: var(--bone-mute);
+  font-size: 1.02rem;
+}
+.jcm .hero-foot {
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.jcm .hero-where {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin: 0;
+}
+
+/* staged entrance */
+.jcm .up { opacity: 0; transform: translateY(18px); animation: jcm-up 1.15s cubic-bezier(.19,1,.22,1) forwards; }
+.jcm .up-1 { animation-delay: 0.1s; }
+.jcm .up-2 { animation-delay: 0.26s; }
+.jcm .up-3 { animation-delay: 0.42s; }
+.jcm .up-4 { animation-delay: 0.58s; }
+@keyframes jcm-up { to { opacity: 1; transform: none; } }
+
+/* Scroll-revealed sections. Visible by default — the hidden state is only
+   applied once JS confirms it can reveal them again, so content can never
+   be stranded invisible if the observer misses one. */
+.jcm .veil { opacity: 1; }
+.jcm.reveal-on .veil {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(.19,1,.22,1);
+}
+.jcm.reveal-on .veil.seen { opacity: 1; transform: none; }
+
+/* ---------------- statement ---------------- */
+.jcm .statement { text-align: center; }
+.jcm .statement .inner { max-width: 46rem; margin: 0 auto; }
+.jcm .statement h2 {
+  font-size: clamp(1.5rem, 2.9vw, 2.25rem);
+  line-height: 1.34;
+  margin: 1.75rem 0 0;
+}
+.jcm .statement h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .statement p {
+  color: var(--bone-mute);
+  margin: 1.6rem auto 0;
+  max-width: 40rem;
+}
+
+/* ---------------- chapters / gallery ---------------- */
+.jcm .chapter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+.jcm .chapter-head h3 { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+.jcm .chapter-head .n {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  color: var(--brass);
+}
+
+/* staggered editorial grid */
+.jcm .plates { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1rem, 2.2vw, 2rem); }
+.jcm .plate { grid-column: span 6; }
+.jcm .plate.tall { grid-column: span 5; }
+.jcm .plate.wide { grid-column: span 7; }
+.jcm .plate.full { grid-column: span 12; }
+.jcm .plate.drop { margin-top: clamp(2rem, 6vw, 5rem); }
+
+.jcm .plate figure { margin: 0; }
+.jcm .plate .glass {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest);
+  border: 1px solid var(--line);
+}
+.jcm .plate .glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 80% at 50% 40%, transparent 45%, rgba(5,8,6,0.5) 100%);
+  pointer-events: none;
+}
+.jcm .plate img { width: 100%; height: 100%; object-fit: cover; }
+
+/* placeholder faces — muted tonal grounds so the gallery has rhythm
+   before the real photographs go in */
+.jcm .ph { aspect-ratio: 3 / 2; display: grid; place-items: center; }
+.jcm .ph.portrait { aspect-ratio: 4 / 5; }
+.jcm .ph.upright { aspect-ratio: 2 / 3; }   /* matches a full-frame portrait crop */
+.jcm .ph.pano { aspect-ratio: 21 / 9; }
+.jcm .ph span {
+  font-size: 0.63rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(237,231,218,0.42);
+  position: relative;
+  z-index: 1;
+}
+.jcm .t-1 { background: linear-gradient(155deg, #1B2A22, #101A15); }
+.jcm .t-2 { background: linear-gradient(155deg, #24291F, #131711); }
+.jcm .t-3 { background: linear-gradient(155deg, #2A2419, #14110C); }
+.jcm .t-4 { background: linear-gradient(155deg, #17242A, #0D1417); }
+.jcm .t-5 { background: linear-gradient(155deg, #262019, #15120E); }
+.jcm .t-6 { background: linear-gradient(155deg, #1E2620, #0F1512); }
+
+.jcm .cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-mute);
+}
+.jcm .cap b { font-weight: 400; color: var(--bone); }
+.jcm .cap i { font-style: normal; color: var(--brass); font-family: var(--display); letter-spacing: 0.14em; }
+
+.jcm .chapter + .chapter { margin-top: clamp(4rem, 9vw, 7.5rem); }
+
+/* a written column sitting in the grid beside a photograph */
+.jcm .plate-note { display: flex; flex-direction: column; justify-content: flex-end; }
+.jcm .plate-note p { color: var(--bone-mute); margin: 1.2rem 0 0; max-width: 38ch; }
+.jcm .plate-note .sc { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+
+  .jcm .plate, .jcm .plate.tall, .jcm .plate.wide, .jcm .plate.full { grid-column: span 12; }
+  .jcm .plate.drop { margin-top: 0; }
+
+}
+
+/* ---------------- aerial band ---------------- */
+.jcm .aerial {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.jcm .aerial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(55% 70% at 82% 20%, rgba(193,162,101,0.10), transparent 65%);
+  pointer-events: none;
+}
+.jcm .aerial-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+@media (max-width: 880px) {
+ .jcm .aerial-grid { grid-template-columns: 1fr; } 
+}
+.jcm .aerial h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin: 1.6rem 0 0; }
+.jcm .aerial h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .aerial p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+.jcm .aerial ul { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.95rem; }
+.jcm .aerial li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.4rem;
+  color: var(--bone-mute);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+.jcm .aerial li::before {
+  content: "—";
+  color: var(--brass);
+}
+.jcm .note {
+  margin-top: 2rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+
+/* ---------------- services ---------------- */
+.jcm .svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+ .jcm .svc-grid { grid-template-columns: 1fr; } 
+}
+.jcm .svc {
+  padding: clamp(1.75rem, 3.5vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--line);
+  padding-right: clamp(1rem, 4vw, 3.5rem);
+}
+.jcm .svc-grid > .svc:nth-child(even) { padding-left: clamp(1rem, 4vw, 3.5rem); padding-right: 0; }
+@media (min-width: 761px) {
+
+  .jcm .svc-grid > .svc:nth-child(odd) { border-right: 1px solid var(--line); }
+  .jcm .svc-grid > .svc:nth-child(even) { padding-left: clamp(1.5rem, 4vw, 3.5rem); }
+
+}
+@media (max-width: 760px) {
+
+  .jcm .svc-grid > .svc:nth-child(even) { padding-left: 0; }
+
+}
+.jcm .svc h3 { font-size: 1.28rem; margin-bottom: 0.7rem; }
+.jcm .svc p { margin: 0; color: var(--bone-mute); font-size: 0.97rem; }
+
+/* ---------------- about ---------------- */
+.jcm .about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.25rem, 6vw, 5rem);
+  align-items: start;
+}
+@media (max-width: 880px) {
+ .jcm .about-grid { grid-template-columns: 1fr; } 
+}
+.jcm .about h2 { font-size: clamp(1.6rem, 3.2vw, 2.45rem); margin: 1.5rem 0 0; }
+.jcm .about p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+
+/* ---------------- process ---------------- */
+.jcm .steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (max-width: 900px) {
+  /* No JavaScript here, so there is no toggle: the links wrap onto a
+     second row instead of hiding behind a button. */
+  .jcm .top-in { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .jcm .sail { flex-wrap: wrap; gap: 0.35rem 1.4rem; }
+  .jcm .sail a { font-size: 0.72rem; color: var(--bone); padding: 0.45rem 0; }
+}
+@media (max-width: 520px) {
+ .jcm .steps { grid-template-columns: 1fr; } 
+}
+.jcm .step { border-top: 1px solid var(--line); padding-top: 1.15rem; }
+.jcm .step .num {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.24em;
+  color: var(--brass);
+}
+.jcm .step h3 { font-size: 1.14rem; margin: 0.85rem 0 0.6rem; }
+.jcm .step p { margin: 0; color: var(--bone-mute); font-size: 0.94rem; }
+
+/* ---------------- enquiry ---------------- */
+.jcm .enq {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+}
+.jcm .enq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+@media (max-width: 880px) {
+ .jcm .enq-grid { grid-template-columns: 1fr; } 
+}
+.jcm .enq h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); margin: 1.5rem 0 0; }
+.jcm .enq h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .enq .lede { color: var(--bone-mute); margin: 1.4rem 0 0; max-width: 34rem; }
+
+.jcm .reach { margin-top: 2.25rem; padding-top: 1.35rem; border-top: 1px solid var(--line); }
+.jcm .reach dt {
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin-bottom: 0.4rem;
+}
+.jcm .reach dd { margin: 0 0 1.4rem; font-size: 1.02rem; }
+.jcm .reach dd:last-child { margin-bottom: 0; }
+.jcm .reach a { color: var(--brass-lit); text-decoration: none; border-bottom: 1px solid rgba(193,162,101,0.4); }
+.jcm .reach a:hover { border-bottom-color: var(--brass-lit); }
+
+.jcm .form { display: grid; gap: 1.35rem; }
+.jcm .f { display: grid; gap: 0.5rem; }
+.jcm .f label {
+  font-size: 0.63rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+.jcm .f input, .jcm .f textarea {
+  font-family: var(--text);
+  font-size: 1rem;
+  color: var(--bone);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0;
+  border-radius: 0;
+  resize: vertical;
+  transition: border-color 0.4s ease;
+}
+.jcm .f input:focus, .jcm .f textarea:focus { outline: none; border-bottom-color: var(--brass); }
+.jcm .f input::placeholder, .jcm .f textarea::placeholder { color: var(--bone-faint); }
+.jcm .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem; }
+@media (max-width: 540px) {
+ .jcm .duo { grid-template-columns: 1fr; } 
+}
+
+.jcm .send {
+  justify-self: start;
+  margin-top: 0.5rem;
+  font-family: var(--text);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--pitch);
+  background: var(--brass);
+  border: 1px solid var(--brass);
+  padding: 1.05em 2.6em;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+.jcm .send:hover { background: transparent; color: var(--brass-lit); }
+.jcm .said { margin: 0; font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); }
+
+/* ---------------- footer ---------------- */
+.jcm footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2.25rem; }
+.jcm .foot-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.jcm .foot-nav { display: flex; flex-wrap: wrap; gap: 2rem; }
+.jcm .foot-nav a {
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+}
+.jcm .foot-nav a:hover { color: var(--brass-lit); }
+.jcm .foot-base {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+/* ----------------------------------------------------------
+   Small screens: lift the smallest labels to a readable size
+   and give every control a 44px-plus tap target.
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+
+  .jcm .sail a { padding: 0.75rem 1.5rem; }
+
+}
+@media (max-width: 600px) {
+
+  .jcm .sc { font-size: 0.74rem; letter-spacing: 0.22em; }
+  .jcm .cap { font-size: 0.72rem; letter-spacing: 0.15em; }
+  .jcm .ph span { font-size: 0.7rem;  letter-spacing: 0.18em; }
+  .jcm .f label { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .jcm .reach dt { font-size: 0.72rem; letter-spacing: 0.2em; }
+  .jcm .note, .jcm .said { font-size: 0.72rem; letter-spacing: 0.16em; }
+  .jcm .hero-where { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .jcm .foot-base { font-size: 0.7rem;  letter-spacing: 0.16em; }
+  .jcm .foot-nav a { font-size: 0.74rem; padding-block: 0.35rem; }
+  .jcm .qlink { font-size: 0.78rem; padding-block: 0.5rem 0.7rem; }
+
+  /* full-width, comfortably tappable submit */
+  .jcm .send {
+    width: 100%;
+    text-align: center;
+    padding: 1.35em 2rem;
+    font-size: 0.76rem;
+  }
+  /* roomier fields for thumbs */
+  .jcm .f input, .jcm .f textarea { padding: 0.75rem 0; }
+
+}
+
+
+
+/* ---- no-script additions ---- */
+.jcm a.send { display: inline-block; text-decoration: none; text-align: center; }
+.jcm .enq-cta { display: grid; gap: 1.1rem; justify-items: start; }
+@media (max-width: 600px) { .jcm a.send { width: 100%; } }

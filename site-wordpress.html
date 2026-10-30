@@ -1,0 +1,1121 @@
+<div class="jcm">
+
+<style>
+/* Justin Close Media — scoped for WordPress.
+   Every rule below applies only inside <div class="jcm">, so it cannot
+   leak out and restyle your theme. */
+.jcm { position: relative; isolation: isolate; }
+
+/* Themes style bare elements (section, ul, figure, button...) and those
+   rules would otherwise bleed into this block. This neutralises them, and
+   must stay ABOVE the design rules, which override it. */
+.jcm section, .jcm div, .jcm figure, .jcm figcaption,
+.jcm ul, .jcm li, .jcm p, .jcm span, .jcm b, .jcm i,
+.jcm h1, .jcm h2, .jcm h3, .jcm a, .jcm img, .jcm hr,
+.jcm form, .jcm button, .jcm input, .jcm textarea, .jcm label,
+.jcm dl, .jcm dt, .jcm dd, .jcm header, .jcm footer,
+.jcm nav, .jcm blockquote {
+  margin: 0; padding: 0; border: 0; outline: 0; background: none;
+  font: inherit; color: inherit; text-align: left; text-decoration: none;
+  text-transform: none; letter-spacing: normal; list-style: none;
+  border-radius: 0; box-shadow: none; max-width: none; min-height: 0;
+  float: none; clear: none; transform: none;
+}
+
+
+/* ============================================================
+   JUSTIN CLOSE MEDIA — hospitality & aerial photography
+   Single file. No external requests. Edit freely.
+
+   The page commits to one dark visual world by design: photographers
+   show work on dark grounds. Every colour is painted explicitly so it
+   holds regardless of the viewer's light/dark setting.
+   ============================================================ */
+
+.jcm {
+  --pitch:      #0D1310;  /* page ground, near-black with a green bias */
+  --forest:     #141F19;  /* raised panels */
+  --forest-2:   #1B2A22;  /* hover / inset */
+  --line:       #26372D;  /* hairlines */
+  --bone:       #EDE7DA;  /* primary text, warm */
+  --bone-mute:  #A2A99E;  /* secondary text, green-biased grey */
+  --bone-faint: #6E7972;  /* tertiary */
+  --brass:      #C1A265;  /* rules, small caps, numerals */
+  --brass-lit:  #DCC28C;  /* hover */
+
+  --display: "Didot", "Bodoni 72", Baskerville, "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --text: Optima, "Gill Sans", "Gill Sans MT", "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+
+  --wrap: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.jcm, .jcm * { box-sizing: border-box; }
+.jcm { scroll-behavior: smooth; overflow-x: clip; }
+
+.jcm {
+  margin: 0;
+  background: var(--pitch);
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* fine film grain over the whole page */
+.jcm::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .jcm { scroll-behavior: auto; }
+  .jcm, .jcm *, .jcm *::before, .jcm *::after { animation: none !important; transition: none !important; }
+
+}
+
+.jcm a { color: inherit; }
+.jcm img { max-width: 100%; display: block; }
+
+.jcm h1, .jcm h2, .jcm h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  line-height: 1.18;
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* small caps label — used sparingly */
+.jcm .sc {
+  font-family: var(--text);
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+
+.jcm .shell { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+
+.jcm section { padding-block: clamp(5rem, 11vw, 9rem); }
+
+.jcm .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+/* quiet link with a brass underline that draws in */
+.jcm .qlink {
+  display: inline-block;
+  font-family: var(--text);
+  font-size: 0.72rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  padding-bottom: 0.55rem;
+  position: relative;
+}
+.jcm .qlink::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: var(--brass);
+  transform-origin: left;
+  transform: scaleX(0.42);
+  transition: transform 0.5s cubic-bezier(.19,1,.22,1);
+}
+.jcm .qlink:hover::after { transform: scaleX(1); }
+.jcm .qlink:hover { color: var(--brass-lit); }
+
+.jcm :focus-visible { outline: 1px solid var(--brass-lit); outline-offset: 5px; }
+
+/* ---------------- header ---------------- */
+.jcm .top {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding-block: 1.5rem;
+  transition: background 0.5s ease, padding 0.5s ease, border-color 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+.jcm .top.settled {
+  background: rgba(13, 19, 16, 0.9);
+  backdrop-filter: blur(14px);
+  padding-block: 0.95rem;
+  border-bottom-color: var(--line);
+}
+.jcm .top-in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+
+.jcm .mark {
+  font-family: var(--display);
+  font-size: 0.94rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone);
+  white-space: nowrap;
+}
+.jcm .mark span { color: var(--brass); }
+
+.jcm .sail { display: flex; align-items: center; gap: 2.4rem; }
+.jcm .sail a {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+  transition: color 0.3s ease;
+}
+.jcm .sail a:hover { color: var(--brass-lit); }
+
+.jcm .sail-btn {
+  display: none;
+  background: none;
+  border: 0;
+  color: var(--bone);
+  font-family: var(--text);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+@media (max-width: 900px) {
+
+  .jcm .sail-btn { display: block; }
+  /* closed menu is display:none, never translated off-canvas —
+     an off-canvas panel widens the page and causes sideways scroll */
+  .jcm .sail {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--pitch);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2rem;
+  }
+  .jcm .sail.open { display: flex; animation: jcm-fadeIn 0.45s ease both; }
+  .jcm .sail a { font-size: 0.82rem; color: var(--bone); }
+
+}
+@keyframes jcm-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------------- hero ---------------- */
+.jcm .hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  padding-block: 0 clamp(3.5rem, 8vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(75% 55% at 18% 88%, rgba(193,162,101,0.13), transparent 62%),
+    radial-gradient(60% 45% at 82% 12%, rgba(31,64,48,0.55), transparent 70%),
+    linear-gradient(172deg, #0A100D 0%, #101A15 46%, #16241C 100%);
+}
+/* optional hero photograph, sits under the vignette */
+.jcm .hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* soft vignette + darkening, like a lens. Keeps the headline readable
+   over whatever photograph goes behind it. */
+.jcm .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top, rgba(6,10,8,0.92) 0%, rgba(6,10,8,0.45) 45%, rgba(6,10,8,0.25) 100%),
+    radial-gradient(120% 90% at 50% 45%, transparent 42%, rgba(5,8,6,0.72) 100%);
+  pointer-events: none;
+}
+.jcm .hero-in { position: relative; z-index: 2; width: 100%; }
+
+.jcm .hero h1 {
+  font-size: clamp(2.05rem, 4.4vw, 3.65rem);
+  line-height: 1.16;
+  max-width: 19ch;
+  margin: 1.9rem 0 0;
+}
+.jcm .hero h1 em { font-style: italic; color: var(--brass-lit); }
+
+.jcm .hero-sub {
+  margin: 1.9rem 0 0;
+  max-width: 52ch;
+  color: var(--bone-mute);
+  font-size: 1.02rem;
+}
+.jcm .hero-foot {
+  margin-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.jcm .hero-where {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin: 0;
+}
+
+/* staged entrance */
+.jcm .up { opacity: 0; transform: translateY(18px); animation: jcm-up 1.15s cubic-bezier(.19,1,.22,1) forwards; }
+.jcm .up-1 { animation-delay: 0.1s; }
+.jcm .up-2 { animation-delay: 0.26s; }
+.jcm .up-3 { animation-delay: 0.42s; }
+.jcm .up-4 { animation-delay: 0.58s; }
+@keyframes jcm-up { to { opacity: 1; transform: none; } }
+
+/* Scroll-revealed sections. Visible by default — the hidden state is only
+   applied once JS confirms it can reveal them again, so content can never
+   be stranded invisible if the observer misses one. */
+.jcm .veil { opacity: 1; }
+.jcm.reveal-on .veil {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(.19,1,.22,1);
+}
+.jcm.reveal-on .veil.seen { opacity: 1; transform: none; }
+
+/* ---------------- statement ---------------- */
+.jcm .statement { text-align: center; }
+.jcm .statement .inner { max-width: 46rem; margin: 0 auto; }
+.jcm .statement h2 {
+  font-size: clamp(1.5rem, 2.9vw, 2.25rem);
+  line-height: 1.34;
+  margin: 1.75rem 0 0;
+}
+.jcm .statement h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .statement p {
+  color: var(--bone-mute);
+  margin: 1.6rem auto 0;
+  max-width: 40rem;
+}
+
+/* ---------------- chapters / gallery ---------------- */
+.jcm .chapter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+.jcm .chapter-head h3 { font-size: clamp(1.3rem, 2.4vw, 1.8rem); }
+.jcm .chapter-head .n {
+  font-family: var(--display);
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  color: var(--brass);
+}
+
+/* staggered editorial grid */
+.jcm .plates { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(1rem, 2.2vw, 2rem); }
+.jcm .plate { grid-column: span 6; }
+.jcm .plate.tall { grid-column: span 5; }
+.jcm .plate.wide { grid-column: span 7; }
+.jcm .plate.full { grid-column: span 12; }
+.jcm .plate.drop { margin-top: clamp(2rem, 6vw, 5rem); }
+
+.jcm .plate figure { margin: 0; }
+.jcm .plate .glass {
+  position: relative;
+  overflow: hidden;
+  background: var(--forest);
+  border: 1px solid var(--line);
+}
+.jcm .plate .glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 80% at 50% 40%, transparent 45%, rgba(5,8,6,0.5) 100%);
+  pointer-events: none;
+}
+.jcm .plate img { width: 100%; height: 100%; object-fit: cover; }
+
+/* placeholder faces — muted tonal grounds so the gallery has rhythm
+   before the real photographs go in */
+.jcm .ph { aspect-ratio: 3 / 2; display: grid; place-items: center; }
+.jcm .ph.portrait { aspect-ratio: 4 / 5; }
+.jcm .ph.upright { aspect-ratio: 2 / 3; }   /* matches a full-frame portrait crop */
+.jcm .ph.pano { aspect-ratio: 21 / 9; }
+.jcm .ph span {
+  font-size: 0.63rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(237,231,218,0.42);
+  position: relative;
+  z-index: 1;
+}
+.jcm .t-1 { background: linear-gradient(155deg, #1B2A22, #101A15); }
+.jcm .t-2 { background: linear-gradient(155deg, #24291F, #131711); }
+.jcm .t-3 { background: linear-gradient(155deg, #2A2419, #14110C); }
+.jcm .t-4 { background: linear-gradient(155deg, #17242A, #0D1417); }
+.jcm .t-5 { background: linear-gradient(155deg, #262019, #15120E); }
+.jcm .t-6 { background: linear-gradient(155deg, #1E2620, #0F1512); }
+
+.jcm .cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-mute);
+}
+.jcm .cap b { font-weight: 400; color: var(--bone); }
+.jcm .cap i { font-style: normal; color: var(--brass); font-family: var(--display); letter-spacing: 0.14em; }
+
+.jcm .chapter + .chapter { margin-top: clamp(4rem, 9vw, 7.5rem); }
+
+/* a written column sitting in the grid beside a photograph */
+.jcm .plate-note { display: flex; flex-direction: column; justify-content: flex-end; }
+.jcm .plate-note p { color: var(--bone-mute); margin: 1.2rem 0 0; max-width: 38ch; }
+.jcm .plate-note .sc { margin-bottom: 0; }
+
+@media (max-width: 860px) {
+
+  .jcm .plate, .jcm .plate.tall, .jcm .plate.wide, .jcm .plate.full { grid-column: span 12; }
+  .jcm .plate.drop { margin-top: 0; }
+
+}
+
+/* ---------------- aerial band ---------------- */
+.jcm .aerial {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.jcm .aerial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(55% 70% at 82% 20%, rgba(193,162,101,0.10), transparent 65%);
+  pointer-events: none;
+}
+.jcm .aerial-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+@media (max-width: 880px) {
+ .jcm .aerial-grid { grid-template-columns: 1fr; } 
+}
+.jcm .aerial h2 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin: 1.6rem 0 0; }
+.jcm .aerial h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .aerial p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+.jcm .aerial ul { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 0.95rem; }
+.jcm .aerial li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  gap: 0.4rem;
+  color: var(--bone-mute);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+.jcm .aerial li::before {
+  content: "—";
+  color: var(--brass);
+}
+.jcm .note {
+  margin-top: 2rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+
+/* ---------------- services ---------------- */
+.jcm .svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+ .jcm .svc-grid { grid-template-columns: 1fr; } 
+}
+.jcm .svc {
+  padding: clamp(1.75rem, 3.5vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--line);
+  padding-right: clamp(1rem, 4vw, 3.5rem);
+}
+.jcm .svc-grid > .svc:nth-child(even) { padding-left: clamp(1rem, 4vw, 3.5rem); padding-right: 0; }
+@media (min-width: 761px) {
+
+  .jcm .svc-grid > .svc:nth-child(odd) { border-right: 1px solid var(--line); }
+  .jcm .svc-grid > .svc:nth-child(even) { padding-left: clamp(1.5rem, 4vw, 3.5rem); }
+
+}
+@media (max-width: 760px) {
+
+  .jcm .svc-grid > .svc:nth-child(even) { padding-left: 0; }
+
+}
+.jcm .svc h3 { font-size: 1.28rem; margin-bottom: 0.7rem; }
+.jcm .svc p { margin: 0; color: var(--bone-mute); font-size: 0.97rem; }
+
+/* ---------------- about ---------------- */
+.jcm .about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.25rem, 6vw, 5rem);
+  align-items: start;
+}
+@media (max-width: 880px) {
+ .jcm .about-grid { grid-template-columns: 1fr; } 
+}
+.jcm .about h2 { font-size: clamp(1.6rem, 3.2vw, 2.45rem); margin: 1.5rem 0 0; }
+.jcm .about p { color: var(--bone-mute); margin: 1.5rem 0 0; }
+
+/* ---------------- process ---------------- */
+.jcm .steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+@media (max-width: 900px) {
+ .jcm .steps { grid-template-columns: repeat(2, 1fr); } 
+}
+@media (max-width: 520px) {
+ .jcm .steps { grid-template-columns: 1fr; } 
+}
+.jcm .step { border-top: 1px solid var(--line); padding-top: 1.15rem; }
+.jcm .step .num {
+  font-family: var(--display);
+  font-size: 0.92rem;
+  letter-spacing: 0.24em;
+  color: var(--brass);
+}
+.jcm .step h3 { font-size: 1.14rem; margin: 0.85rem 0 0.6rem; }
+.jcm .step p { margin: 0; color: var(--bone-mute); font-size: 0.94rem; }
+
+/* ---------------- enquiry ---------------- */
+.jcm .enq {
+  background: var(--forest);
+  border-block: 1px solid var(--line);
+}
+.jcm .enq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+@media (max-width: 880px) {
+ .jcm .enq-grid { grid-template-columns: 1fr; } 
+}
+.jcm .enq h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); margin: 1.5rem 0 0; }
+.jcm .enq h2 em { font-style: italic; color: var(--brass-lit); }
+.jcm .enq .lede { color: var(--bone-mute); margin: 1.4rem 0 0; max-width: 34rem; }
+
+.jcm .reach { margin-top: 2.25rem; padding-top: 1.35rem; border-top: 1px solid var(--line); }
+.jcm .reach dt {
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+  margin-bottom: 0.4rem;
+}
+.jcm .reach dd { margin: 0 0 1.4rem; font-size: 1.02rem; }
+.jcm .reach dd:last-child { margin-bottom: 0; }
+.jcm .reach a { color: var(--brass-lit); text-decoration: none; border-bottom: 1px solid rgba(193,162,101,0.4); }
+.jcm .reach a:hover { border-bottom-color: var(--brass-lit); }
+
+.jcm .form { display: grid; gap: 1.35rem; }
+.jcm .f { display: grid; gap: 0.5rem; }
+.jcm .f label {
+  font-size: 0.63rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+.jcm .f input, .jcm .f textarea {
+  font-family: var(--text);
+  font-size: 1rem;
+  color: var(--bone);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 0.55rem 0;
+  border-radius: 0;
+  resize: vertical;
+  transition: border-color 0.4s ease;
+}
+.jcm .f input:focus, .jcm .f textarea:focus { outline: none; border-bottom-color: var(--brass); }
+.jcm .f input::placeholder, .jcm .f textarea::placeholder { color: var(--bone-faint); }
+.jcm .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.35rem; }
+@media (max-width: 540px) {
+ .jcm .duo { grid-template-columns: 1fr; } 
+}
+
+.jcm .send {
+  justify-self: start;
+  margin-top: 0.5rem;
+  font-family: var(--text);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--pitch);
+  background: var(--brass);
+  border: 1px solid var(--brass);
+  padding: 1.05em 2.6em;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+.jcm .send:hover { background: transparent; color: var(--brass-lit); }
+.jcm .said { margin: 0; font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); }
+
+/* ---------------- footer ---------------- */
+.jcm footer { padding-block: clamp(3rem, 6vw, 4.5rem) 2.25rem; }
+.jcm .foot-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.jcm .foot-nav { display: flex; flex-wrap: wrap; gap: 2rem; }
+.jcm .foot-nav a {
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-mute);
+}
+.jcm .foot-nav a:hover { color: var(--brass-lit); }
+.jcm .foot-base {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bone-faint);
+}
+/* ----------------------------------------------------------
+   Small screens: lift the smallest labels to a readable size
+   and give every control a 44px-plus tap target.
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+
+  .jcm .sail a { padding: 0.75rem 1.5rem; }
+
+}
+@media (max-width: 600px) {
+
+  .jcm .sc { font-size: 0.74rem; letter-spacing: 0.22em; }
+  .jcm .cap { font-size: 0.72rem; letter-spacing: 0.15em; }
+  .jcm .ph span { font-size: 0.7rem;  letter-spacing: 0.18em; }
+  .jcm .f label { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .jcm .reach dt { font-size: 0.72rem; letter-spacing: 0.2em; }
+  .jcm .note, .jcm .said { font-size: 0.72rem; letter-spacing: 0.16em; }
+  .jcm .hero-where { font-size: 0.72rem; letter-spacing: 0.18em; }
+  .jcm .foot-base { font-size: 0.7rem;  letter-spacing: 0.16em; }
+  .jcm .foot-nav a { font-size: 0.74rem; padding-block: 0.35rem; }
+  .jcm .qlink { font-size: 0.78rem; padding-block: 0.5rem 0.7rem; }
+
+  /* full-width, comfortably tappable submit */
+  .jcm .send {
+    width: 100%;
+    text-align: center;
+    padding: 1.35em 2rem;
+    font-size: 0.76rem;
+  }
+  /* roomier fields for thumbs */
+  .jcm .f input, .jcm .f textarea { padding: 0.75rem 0; }
+
+}
+</style>
+
+<!-- ============================== HEADER ============================== -->
+<header class="top" id="jcm-top">
+  <div class="shell top-in">
+    <a class="mark" href="#jcm-home">Justin Close <span>Media</span></a>
+    <nav class="sail" id="jcm-sail">
+      <a href="#jcm-work">Work</a>
+      <a href="#jcm-aerial">Aerial</a>
+      <a href="#jcm-services">Services</a>
+      <a href="#jcm-about">About</a>
+      <a href="#jcm-enquire">Enquire</a>
+    </nav>
+    <button class="sail-btn" id="jcm-sailBtn" aria-expanded="false" aria-controls="jcm-sail">Menu</button>
+  </div>
+</header>
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="jcm-home">
+  <!--
+    HERO PHOTOGRAPH — your strongest wide frame goes here.
+    Delete this comment wrapper and the line below becomes live:
+
+    <img class="hero-img" src="images/hero.jpg" alt="">
+
+    A twilight exterior or an aerial usually works best. Until then the
+    deep green ground below stands in on its own.
+  -->
+  <div class="shell hero-in">
+    <p class="sc up up-1">Hospitality &amp; Aerial Photography</p>
+    <h1 class="up up-2">Photographed the way a guest wants to <em>remember</em> the stay</h1>
+    <p class="hero-sub up up-3">Interiors, grounds, and aerial work for hotels, lodges, and private rentals — made for the places a booking is decided: your own site, the listing pages, and the moment someone is choosing between you and the property down the road.</p>
+    <div class="hero-foot up up-4">
+      <a class="qlink" href="#jcm-work">View the work</a>
+      <p class="hero-where">Ground &amp; Air · Available for travel</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== STATEMENT ============================== -->
+<section class="statement veil">
+  <div class="shell inner">
+    <p class="sc">The difference</p>
+    <h2>A room is booked on a photograph long before anybody reads a <em>word</em> of the description.</h2>
+    <p>Most properties are not losing to a better hotel. They are losing to a better-lit one — a beautiful room shot at noon with the curtains shut, a pool photographed in flat grey light instead of at dusk when it glows, grounds that never get shown at all because nobody could get high enough to see them.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================== WORK ============================== -->
+<section id="jcm-work">
+  <div class="shell">
+
+    <!--
+      ===================== ADDING YOUR PHOTOGRAPHS =====================
+      Every plate below is a placeholder. To place a real photograph,
+      replace this:
+
+          <span>Twilight facade</span>
+
+      with this:
+
+          <img src="images/twilight.jpg" alt="Twilight facade of the property">
+
+      Leave everything else as it is. Put the image files in a folder
+      called "images" beside this file. The captions double as a shot
+      list — these are the frames that sell a property.
+      ===================================================================
+    -->
+
+    <!-- Chapter I -->
+    <div class="chapter veil">
+      <div class="chapter-head">
+        <h3>Rooms &amp; Suites</h3>
+        <span class="n">I</span>
+      </div>
+      <div class="plates">
+        <div class="plate wide">
+          <figure>
+            <div class="glass"><div class="ph t-1"><span>Signature king</span></div></div>
+            <figcaption class="cap"><b>Signature king</b><i>i</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate tall drop">
+          <figure>
+            <div class="glass"><div class="ph portrait t-3"><span>Corner suite</span></div></div>
+            <figcaption class="cap"><b>Corner suite, morning</b><i>ii</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate tall">
+          <figure>
+            <div class="glass"><div class="ph portrait t-5"><span>Bath &amp; vanity</span></div></div>
+            <figcaption class="cap"><b>Bath &amp; vanity</b><i>iii</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate wide drop">
+          <figure>
+            <div class="glass"><div class="ph t-2"><span>Turndown detail</span></div></div>
+            <figcaption class="cap"><b>Linen &amp; texture</b><i>iv</i></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter II -->
+    <div class="chapter veil">
+      <div class="chapter-head">
+        <h3>Arrival &amp; Public Rooms</h3>
+        <span class="n">II</span>
+      </div>
+      <div class="plates">
+        <div class="plate full">
+          <figure>
+            <div class="glass"><div class="ph pano t-4"><span>Twilight facade</span></div></div>
+            <figcaption class="cap"><b>The facade at blue hour</b><i>v</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate">
+          <figure>
+            <div class="glass"><div class="ph t-6"><span>Lobby &amp; front desk</span></div></div>
+            <figcaption class="cap"><b>First impression</b><i>vi</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate drop">
+          <figure>
+            <div class="glass"><div class="ph t-3"><span>Bar, evening</span></div></div>
+            <figcaption class="cap"><b>The lounge, lit</b><i>vii</i></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter III -->
+    <div class="chapter veil">
+      <div class="chapter-head">
+        <h3>From the Air</h3>
+        <span class="n">III</span>
+      </div>
+      <div class="plates">
+        <div class="plate wide">
+          <figure>
+            <div class="glass"><div class="ph t-4"><span>Property &amp; grounds</span></div></div>
+            <figcaption class="cap"><b>The property in full</b><i>viii</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate tall drop">
+          <figure>
+            <div class="glass"><div class="ph portrait t-1"><span>Pool from above</span></div></div>
+            <figcaption class="cap"><b>Pool, overhead</b><i>ix</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate full">
+          <figure>
+            <div class="glass"><div class="ph pano t-6"><span>Setting &amp; approach</span></div></div>
+            <figcaption class="cap"><b>Where the property sits</b><i>x</i></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter IV -->
+    <div class="chapter veil">
+      <div class="chapter-head">
+        <h3>Table &amp; Detail</h3>
+        <span class="n">IV</span>
+      </div>
+      <div class="plates">
+        <div class="plate">
+          <figure>
+            <div class="glass"><div class="ph t-5"><span>Breakfast service</span></div></div>
+            <figcaption class="cap"><b>The dining room</b><i>xi</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate drop">
+          <figure>
+            <div class="glass"><div class="ph t-2"><span>Coffee &amp; key</span></div></div>
+            <figcaption class="cap"><b>Guest detail</b><i>xii</i></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter V -->
+    <div class="chapter veil">
+      <div class="chapter-head">
+        <h3>Lifestyle</h3>
+        <span class="n">V</span>
+      </div>
+      <div class="plates">
+        <div class="plate tall">
+          <figure>
+            <div class="glass"><div class="ph upright"><img src="images/lifestyle-beachside.jpg" alt="A guest laughing over a cocktail at a beachside table, the sea behind her"></div></div>
+            <figcaption class="cap"><b>Beachside, late afternoon</b><i>xiii</i></figcaption>
+          </figure>
+        </div>
+        <div class="plate wide plate-note">
+          <p class="sc">Why it matters</p>
+          <p>A room photograph tells a guest what they are buying. A lifestyle frame tells them how it will feel — someone laughing over a drink as the light goes long, the part of a stay that gets remembered and retold.</p>
+          <p>These are the frames that work hardest away from your website: on social, in email, in the places a property is discovered rather than booked. They carry a mood instead of a floor plan.</p>
+        </div>
+        <!--
+          MORE LIFESTYLE FRAMES GO HERE.
+          Copy the photo block above, swap the src and the alt text, and
+          give it the next roman numeral. Use class "plate tall" for an
+          upright photograph or "plate wide" for a landscape one.
+        -->
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================== AERIAL ============================== -->
+<section class="aerial" id="jcm-aerial">
+  <div class="shell aerial-grid">
+    <div class="veil">
+      <p class="sc">Aerial &amp; Drone</p>
+      <h2>Some things about a property can only be understood from <em>above</em></h2>
+      <p>A guest scrolling a listing is asking questions your ground-level photographs cannot answer. How big is this place. What is around it. How far is the water, the lift, the vineyard, the old town. Is that pool the centre of the resort or an afterthought behind the car park.</p>
+      <p>One aerial frame answers all of it at once, which is why it so often becomes the image a property leads with.</p>
+    </div>
+    <div class="veil">
+      <ul>
+        <li><span>The whole property in a single frame — scale, layout, and how the buildings sit in the landscape</span></li>
+        <li><span>Proximity shots that prove the thing guests actually search for: beachfront, slopeside, lakeside, walking distance to town</span></li>
+        <li><span>Grounds, gardens, golf, and pool complexes, which read as maps from overhead and as nothing much from the ground</span></li>
+        <li><span>Rooftops, terraces, and the views your best rooms are actually selling</span></li>
+        <li><span>Establishing frames for your homepage banner, brochure cover, and video opener</span></li>
+      </ul>
+      <!--
+        IMPORTANT — READ BEFORE PUBLISHING:
+        Flying a drone commercially in the US requires an FAA Part 107
+        Remote Pilot Certificate. Do not sell aerial work until you hold
+        one. Once you do, put your certificate number on the line below
+        so hotels can see it — it is the first thing a cautious GM asks.
+      -->
+      <p class="note">Flown to FAA regulations · Certificate details on request</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SERVICES ============================== -->
+<section id="jcm-services">
+  <div class="shell veil">
+    <p class="sc">What I photograph</p>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.6rem);margin:1.5rem 0 clamp(2rem,4vw,3rem);max-width:22ch;">Booked by the half day, the day, or the property</h2>
+
+    <div class="svc-grid">
+      <div class="svc">
+        <h3>Guest Rooms &amp; Suites</h3>
+        <p>A hero frame for every room type you sell, with the supporting angles behind it. Curtains open, lamps on, so the room reads warm rather than clinical.</p>
+      </div>
+      <div class="svc">
+        <h3>Facades &amp; Twilight</h3>
+        <p>The exterior at blue hour, when the interior lights balance the last of the sky. Usually the single most valuable frame a property owns.</p>
+      </div>
+      <div class="svc">
+        <h3>Aerial &amp; Drone</h3>
+        <p>Scale, setting, and proximity from overhead — plus the elevated angles that sit between a rooftop and a helicopter.</p>
+      </div>
+      <div class="svc">
+        <h3>Arrival &amp; Public Rooms</h3>
+        <p>Front desk, lounge, corridors, and the sequence of arriving. The spaces that set an expectation between the car park and the room.</p>
+      </div>
+      <div class="svc">
+        <h3>Table &amp; Bar</h3>
+        <p>Breakfast service, the bar in the evening, plated dishes and the room in use — shot on your service schedule, so nothing is staged twice.</p>
+      </div>
+      <div class="svc">
+        <h3>Grounds &amp; Amenities</h3>
+        <p>Pool, spa, terrace, fitness, event space and gardens, including the dusk frames that turn an ordinary amenity into a reason to book.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ============================== ABOUT ============================== -->
+<section class="about" id="jcm-about">
+  <div class="shell about-grid">
+    <div class="veil">
+      <div class="glass"><div class="ph portrait t-3"><span>Portrait</span></div></div>
+      <p class="cap" style="margin-top:0.85rem;"><b>Justin Close</b></p>
+    </div>
+    <div class="veil">
+      <p class="sc">About</p>
+      <h2>I am building this studio one property at a time</h2>
+      <p>Justin Close Media is new, and I would rather say so than pad this page with claims you cannot check. What being new actually buys you: you work with the person holding the camera, I have the time to plan a shoot properly around how your property runs, and I will care about your gallery more than a busy studio can — because for now, your photographs are my portfolio.</p>
+      <p>I photograph hospitality because the constraints are the interesting part. A room has to look honest and inviting at the same time. You cannot move a wall, the light arrives when it arrives, and housekeeping needs the floor back by two. Working well inside all that is the job.</p>
+      <p>If you are a property that wants attention paid to it, I am the right call. If you need forty locations covered next week, I am not — not yet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PROCESS ============================== -->
+<section id="jcm-process">
+  <div class="shell veil">
+    <p class="sc">How a booking runs</p>
+    <h2 style="font-size:clamp(1.7rem,3.4vw,2.6rem);margin:1.5rem 0 0;max-width:20ch;">Four steps, and no surprises for your front desk</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="num">I</span>
+        <h3>Walkthrough</h3>
+        <p>We walk the property together, agree which room types are worth covering, and find where the good light lands and at what hour.</p>
+      </div>
+      <div class="step">
+        <span class="num">II</span>
+        <h3>Shot list</h3>
+        <p>You have the list before I arrive — every frame, and when each space needs to be free. Housekeeping gets a copy too.</p>
+      </div>
+      <div class="step">
+        <span class="num">III</span>
+        <h3>Shoot day</h3>
+        <p>Ground work around occupancy and service, aerials in the right wind and light, facade last as the sky turns. Rooms left as found.</p>
+      </div>
+      <div class="step">
+        <span class="num">IV</span>
+        <h3>Delivery</h3>
+        <p>Edited frames in a private gallery, sized for your site, the listing pages, and print — ready to publish as they are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ENQUIRE ============================== -->
+<section class="enq" id="jcm-enquire">
+  <div class="shell enq-grid">
+    <div class="veil">
+      <p class="sc">Enquiries</p>
+      <h2>Tell me about your <em>property</em></h2>
+      <p class="lede">Send the property, roughly how many room types you would want covered, whether you want aerial work, and the timing you have in mind. I will come back with availability and a price.</p>
+      <dl class="reach">
+        <dt>Email</dt>
+        <dd><a href="mailto:justinbclose@gmail.com">justinbclose@gmail.com</a></dd>
+        <!-- Add your telephone number and the areas you cover here. -->
+        <dt>Coverage</dt>
+        <dd>Local bookings, and travelling for the right property</dd>
+      </dl>
+    </div>
+
+    <form class="form veil" id="jcm-form">
+      <div class="f">
+        <label for="jcm-q-name">Your name</label>
+        <input id="jcm-q-name" type="text" required>
+      </div>
+      <div class="f">
+        <label for="jcm-q-prop">Property</label>
+        <input id="jcm-q-prop" type="text" required>
+      </div>
+      <div class="duo">
+        <div class="f">
+          <label for="jcm-q-mail">Email</label>
+          <input id="jcm-q-mail" type="email" required>
+        </div>
+        <div class="f">
+          <label for="jcm-q-tel">Telephone</label>
+          <input id="jcm-q-tel" type="tel">
+        </div>
+      </div>
+      <div class="f">
+        <label for="jcm-q-msg">What you would like photographed</label>
+        <textarea id="jcm-q-msg" rows="4" required></textarea>
+      </div>
+      <button class="send" type="submit">Send enquiry</button>
+      <p class="said" id="jcm-said">Opens your email with the details already written</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  <div class="shell">
+    <div class="foot-in">
+      <a class="mark" href="#jcm-home">Justin Close <span>Media</span></a>
+      <nav class="foot-nav">
+        <a href="#jcm-work">Work</a>
+        <a href="#jcm-aerial">Aerial</a>
+        <a href="#jcm-services">Services</a>
+        <a href="#jcm-about">About</a>
+        <a href="#jcm-enquire">Enquire</a>
+      </nav>
+    </div>
+    <p class="foot-base" id="jcm-base">Hospitality &amp; aerial photography</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var d = document;
+  var root = d.querySelector('.jcm');
+  if (!root) return;
+
+  // year
+  var base = d.getElementById('jcm-base');
+  if (base) base.textContent = '© ' + new Date().getFullYear() + ' Justin Close Media · Hospitality & aerial photography';
+
+  // header settles once you leave the hero
+  var top = d.getElementById('jcm-top');
+  var onScroll = function () {
+    if (window.scrollY > 60) top.classList.add('settled');
+    else top.classList.remove('settled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // menu
+  var btn = d.getElementById('jcm-sailBtn');
+  var sail = d.getElementById('jcm-sail');
+  if (btn && sail) {
+    btn.addEventListener('click', function () {
+      var open = sail.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Close' : 'Menu';
+    });
+    sail.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        sail.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = 'Menu';
+      }
+    });
+  }
+
+  // sections rise into view
+  var veils = [].slice.call(root.querySelectorAll('.veil'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    if (root) root.classList.add('reveal-on');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('seen'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    veils.forEach(function (v) { io.observe(v); });
+    // Safety net: anything still unrevealed after a moment is shown anyway,
+    // so a fast scroll or a missed callback can never hide content.
+    setTimeout(function () {
+      veils.forEach(function (v) { v.classList.add('seen'); });
+    }, 4000);
+  }
+
+  // enquiry -> opens the visitor's mail app, already written.
+  // No server required. To collect submissions online instead, point the
+  // form at a service such as Formspree and delete this handler.
+  var form = d.getElementById('jcm-form');
+  var said = d.getElementById('jcm-said');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = function (id) { return (d.getElementById(id).value || '').trim(); };
+      var body =
+        'Property: ' + v('jcm-q-prop') + '\n' +
+        'Contact: ' + v('jcm-q-name') + '\n' +
+        'Email: ' + v('jcm-q-mail') + '\n' +
+        (v('jcm-q-tel') ? 'Telephone: ' + v('jcm-q-tel') + '\n' : '') +
+        '\n' + v('jcm-q-msg') + '\n';
+      window.location.href = 'mailto:justinbclose@gmail.com'
+        + '?subject=' + encodeURIComponent('Photography enquiry — ' + (v('jcm-q-prop') || 'property'))
+        + '&body=' + encodeURIComponent(body);
+      if (said) said.textContent = 'Opening your email — press send to finish';
+    });
+  }
+})();
+</script>
+
+</div>
